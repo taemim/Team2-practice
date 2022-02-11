@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 쿼리작성 -->
+	<entry key ="selectAllmovies">
+		SELECT 
+			   M.MOVIE_NAME
+			 , M.GENRE
+			 , M.RELEASE_DATE
+			 , M.RUNINGTIME
+			 , M.AGE_LIMIT
+		  FROM MOVIE M
+	</entry>
+	
+</properties>
