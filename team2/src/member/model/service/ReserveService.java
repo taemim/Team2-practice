@@ -12,6 +12,7 @@ import java.util.List;
 import member.model.dao.ReserveDAO;
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
+import member.model.dto.ReserveDTO;
 import member.model.dto.UserDTO;
 
 public class ReserveService {
@@ -78,6 +79,17 @@ public class ReserveService {
 		close(con);
 		
 		return cinema;
+	}
+
+	public List<ReserveDTO> selectReservation(String inputUserId) {
+		
+		Connection con = getConnection();
+		
+		List<ReserveDTO> reserve = reserveDAO.selectRevervation(con, inputUserId);
+		
+		close(con);
+		
+		return reserve;
 	}
 	
 	

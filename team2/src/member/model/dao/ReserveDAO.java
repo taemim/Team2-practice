@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
+import member.model.dto.ReserveDTO;
 import member.model.dto.UserDTO;
 
 public class ReserveDAO {
@@ -153,6 +154,45 @@ public class ReserveDAO {
 			close(rset);
 		}
 		return cinema;
+	}
+
+	public List<ReserveDTO> selectRevervation(Connection con, String inputUserId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<ReserveDTO> reserveList = null;
+		
+		String query = prop.getProperty("selectReservation");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, inputUserId);
+			
+			rset = pstmt.executeQuery();
+			
+			reserveList = new ArrayList();
+
+			
+			while(rset.next()) {
+				ReserveDTO reserve = new ReserveDTO();
+				reserve.setReserve_no(rset.getInt("RESERVE_NO"));
+				reserve.setUser_id(rset.getString("USER_ID"));
+				reserve.setCinema_no(rset.getInt("CINEMA_NO"));
+				reserve.setPpl_num(rset.getInt("PPL_NUM"));
+				reserve.setSeats_no(rset.getString("SEATS_NO"));
+				reserve.setPrice(rset.getInt("PRICE"));
+				
+				reserveList.add(reserve);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reserveList;
 	}
 
 }

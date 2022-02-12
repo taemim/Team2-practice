@@ -5,6 +5,7 @@ import java.util.Map;
 
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
+import member.model.dto.ReserveDTO;
 import member.model.dto.UserDTO;
 import member.model.service.ReserveService;
 import member.view.ReserveResult;
@@ -40,7 +41,7 @@ public class ReserveController {
 		List<MovieDTO> movieList = reserveService.selectAllMovie();
 		
 		if(!movieList.isEmpty()) 
-			ReserveResult.display(movieList);
+			reserveResult.display1(movieList);
 		else 
 			System.out.println("조회실패!");
 		
@@ -64,6 +65,19 @@ public class ReserveController {
 		else {
 			System.out.println("메인메뉴로 돌아갑니다.");			
 		}
+	}
+
+
+	public void selectReservation(String inputUserId) {
+		
+		List<ReserveDTO> reserve = reserveService.selectReservation(inputUserId);
+		
+		if(!reserve.isEmpty()) {
+			reserveResult.display(reserve);			
+		} else {
+			reserveResult.displayDmlResult("selectFailed");
+		}
+		
 	}
 	
 		

@@ -35,7 +35,7 @@ public class ReserveMenu {
 			case 2 : reserveController.selectAllMovie(); break; 
 			case 3 : reserveController.selectCinema(selectCinema()); break; 
 			case 4 : break; 
-			case 5 : break; 
+			case 5 : reserveController.selectReservation(inputUserId()); break; 
 			case 6 : break; 
 			case 0 : return;
 			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요."); break;
@@ -97,7 +97,21 @@ public class ReserveMenu {
 
 		return cineName; 
 	}
+	
+	public String inputUserId() {
 		
+		System.out.print("회원 아이디 : ");
+		return sc.nextLine();
+	}
+	
+	public String inputPassword() {
+		
+		System.out.print("회원 비밀번호 : ");
+		
+		return sc.nextLine();
+	}
+	
+	
 	
 	/* 영화 수정 입력단 */
 	

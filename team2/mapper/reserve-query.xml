@@ -50,4 +50,10 @@
 		, ?
 		)
 	</entry>
+	<entry key="selectReservation">
+		SELECT
+		       *
+		  FROM RESERVE R
+		 WHERE R.USER_ID = ?
+	</entry>
 </properties>
