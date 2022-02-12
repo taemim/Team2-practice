@@ -31,4 +31,23 @@
 		  FROM CINEMA C
 		 WHERE CINEMA_NAME = ? 		  
 	</entry>
+	<entry key="insertUser">
+		INSERT
+		  INTO MOVIE_USER U
+		(
+		  U.USER_ID
+		, U.USER_PWD
+		, U.NAME
+		, U.PHONE
+		, U.AGE
+		)
+		VALUES
+		(
+		  ?
+		, ?
+		, ?
+		, ?
+		, ?
+		)
+	</entry>
 </properties>

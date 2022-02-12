@@ -1,6 +1,8 @@
 package member.view;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import member.controller.ReserveController;
@@ -8,12 +10,12 @@ import member.model.dto.CinemaDTO;
 
 public class ReserveMenu {
 
-	Scanner sc = new Scanner(System.in);
-	ReserveController reserveController = new ReserveController();
+	private Scanner sc = new Scanner(System.in);
+	private ReserveController reserveController = new ReserveController();
+
 
 	public void displayMenu() {
-
-
+		
 		do {
 			System.out.println("\n *** 영화 예매 프로그램 *** \n");
 			System.out.println("1. 회원 등록");
@@ -29,7 +31,7 @@ public class ReserveMenu {
 			
 			
 			switch(no) {
-			case 1 : break; 
+			case 1 : reserveController.registNewMember(inputMember()); break;
 			case 2 : reserveController.selectAllMovie(); break; 
 			case 3 : reserveController.selectCinema(selectCinema()); break; 
 			case 4 : break; 
@@ -43,7 +45,24 @@ public class ReserveMenu {
 		} while (true);
 	}
 	/* 회원 등록을 위한 정보를 입력받기*/
+	public Map<String, String> inputMember() {
+		
+		Map<String, String> map = new HashMap<>();
+		System.out.print("입력할 아이디 : ");
+//		sc.nextLine();
+		map.put("id", sc.nextLine());
+		System.out.print("입력할 비밀번호 : ");
+		map.put("pwd", sc.nextLine());
+		System.out.print("입력할 이름 : ");
+		map.put("name", sc.nextLine());
+		System.out.print("입력할 전화번호 : ");
+		map.put("phone", sc.nextLine());
+		System.out.print("입력할 나이 : ");
+		map.put("age", sc.nextLine());	
+		
+		return map;
 
+	}
 	
 	/* 상영관 조회 메뉴 */
 	public String selectCinema() {

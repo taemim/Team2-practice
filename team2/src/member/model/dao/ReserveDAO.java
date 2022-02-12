@@ -1,7 +1,8 @@
 package member.model.dao;
 
-import java.io.FileInputStream;
+import static common.JDBCTemplate.close;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.util.Properties;
 
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
-import static common.JDBCTemplate.*;
+import member.model.dto.UserDTO;
 
 public class ReserveDAO {
 	
@@ -27,6 +28,33 @@ public class ReserveDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public int insertUser(Connection con, UserDTO user) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertUser");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, user.getUserId());
+			pstmt.setString(2, user.getUserPwd());
+			pstmt.setString(3, user.getName());
+			pstmt.setString(4, user.getPhone());
+			pstmt.setInt(5, user.getAge());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+ 
  
 	public List<MovieDTO> selectAllMovie(Connection con) {
 		PreparedStatement pstmt = null;

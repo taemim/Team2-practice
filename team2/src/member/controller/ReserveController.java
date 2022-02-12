@@ -1,17 +1,38 @@
 package member.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
+import member.model.dto.UserDTO;
 import member.model.service.ReserveService;
 import member.view.ReserveResult;
 
 public class ReserveController {
 	/* view단에서 입력받은 정보를 가공하여 service로 전달*/
-	ReserveService reserveService = new ReserveService();
+	private ReserveService reserveService = new ReserveService();
+	private ReserveResult reserveResult = new ReserveResult();
+	
 	/* 회원 등록용 메소드 */
+	public void registNewMember(Map<String, String> requestMap) {
+		
+		UserDTO userDTO = new UserDTO();
+		userDTO.setUserId(requestMap.get("id"));
+		userDTO.setUserPwd(requestMap.get("pwd"));
+		userDTO.setName(requestMap.get("name"));
+		userDTO.setPhone(requestMap.get("phone"));
+		userDTO.setAge(Integer.valueOf(requestMap.get("age")));
+		
+		int registResult = reserveService.insertUser(userDTO);
+		
+		if(registResult > 0) {
+			reserveResult.displayDmlResult("insertSuccess");
+		} else {
+			reserveResult.displayDmlResult("insertFailed");
+		}
+	}
+	
 	
 	/* 영화 조회용 메소드 */
 	public void selectAllMovie() {
