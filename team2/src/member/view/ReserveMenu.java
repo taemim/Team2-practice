@@ -13,8 +13,8 @@ public class ReserveMenu {
 	private Scanner sc = new Scanner(System.in);
 	private ReserveController reserveController = new ReserveController();
 
-
 	public void displayMenu() {
+		
 		
 		do {
 			System.out.println("\n *** 영화 예매 프로그램 *** \n");
@@ -36,7 +36,7 @@ public class ReserveMenu {
 			case 3 : reserveController.selectCinema(selectCinema()); break; 
 			case 4 : break; 
 			case 5 : reserveController.selectReservation(inputUserId()); break; 
-			case 6 : break; 
+			case 6 : reserveController.deleteReservation(inputUserId()); break; 
 			case 0 : return;
 			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요."); break;
 			

@@ -195,6 +195,27 @@ public class ReserveDAO {
 		return reserveList;
 	}
 
+	public int deleteReserve(Connection con, String inputUserId) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteReservation");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, inputUserId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
 
 

@@ -47,7 +47,7 @@ public class ReserveController {
 		
 	}
 	
-	/* 상영관 목록 조회 */
+	/* 상영관 목록 조회용 메소드 */
 	public List<CinemaDTO> selectCinemaList() {
 		
 		List<CinemaDTO> cinemaList = reserveService.selectAllCinema();
@@ -67,7 +67,7 @@ public class ReserveController {
 		}
 	}
 
-
+	/* 영화 예매 내역 조회용 메소드 */
 	public void selectReservation(String inputUserId) {
 		
 		List<ReserveDTO> reserve = reserveService.selectReservation(inputUserId);
@@ -79,12 +79,18 @@ public class ReserveController {
 		}
 		
 	}
-	
+
+	/* 영화 예매 취소용 메소드 */
+	public void deleteReservation(String inputUserId) {
 		
-	/* 상영관 조회용 메소드 */
-	
-	/* 영화 예매 메소드 */
-	
-	/* 영화 예매 취소 메소드 */
+		int registResult = reserveService.deleteReservation(inputUserId);
+		
+		if(registResult > 0) {
+			reserveResult.displayDmlResult("deleteSuccess");
+		} else {
+			reserveResult.displayDmlResult("deleteFailed");
+		}	
+		
+	}
 
 }

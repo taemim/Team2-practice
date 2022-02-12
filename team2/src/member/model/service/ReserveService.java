@@ -91,6 +91,25 @@ public class ReserveService {
 		
 		return reserve;
 	}
+
+	public int deleteReservation(String inputUserId) {
+		
+		Connection con = getConnection();
+
+		int result = 0;
+		
+		result = reserveDAO.deleteReserve(con, inputUserId);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+						
+		return result;
+	}
 	
 	
 	/* 상영관 조회용 메소드 */

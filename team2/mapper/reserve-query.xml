@@ -56,4 +56,10 @@
 		  FROM RESERVE R
 		 WHERE R.USER_ID = ?
 	</entry>
+	<entry key="deleteReservation">
+		DELETE
+		  FROM RESERVE R
+		 WHERE R.USER_ID = ?
+	</entry>
+	
 </properties>
