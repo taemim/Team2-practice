@@ -1,6 +1,7 @@
 package member.model.dao;
 
 import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
 import static common.JDBCTemplate.*;
 
@@ -33,16 +35,17 @@ public class ReserveDAO {
 		List<MovieDTO> movieList = null; 
 		
 		String query = prop.getProperty("selectAllmovies");
+		
+		
 		try {
 			pstmt = con.prepareStatement(query);
 			rset = pstmt.executeQuery();
 			
+			movieList= new ArrayList<>();
 			while(rset.next()) {
 				
 				MovieDTO movie =new MovieDTO();
-				
-				movieList= new ArrayList<>();
-				
+
 				movie.setMovieName(rset.getString("MOVIE_NAME"));
 				movie.setGenre(rset.getString("GENRE"));
 				movie.setReleaseDate(rset.getDate("RELEASE_DATE"));
@@ -62,6 +65,68 @@ public class ReserveDAO {
 		return movieList;
 	}
 
+	public List<CinemaDTO> selectAllCinemaName(Connection con) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		
+		List<CinemaDTO> cinemaList = null; 
+		
+		String query = prop.getProperty("selectAllCinema");
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			cinemaList= new ArrayList<>();
+			while(rset.next()) {
+				
+				CinemaDTO cinema =new CinemaDTO();
 
+				cinema.setCinemaName(rset.getString("CINEMA_NAME"));
+				
+				cinemaList.add(cinema);
+				
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return cinemaList;
+	}
+
+	public CinemaDTO selectCinema(Connection con, String cineName) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		
+		CinemaDTO cinema =new CinemaDTO();
+		
+		String query = prop.getProperty("selectCinema");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, cineName);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				cinema.setCinemaName(rset.getString("CINEMA_NAME"));
+				cinema.setAddress(rset.getString("ADDRESS"));
+				cinema.setPhone(rset.getString("PHONE"));
+				cinema.setCloseDay(rset.getString("CLOSE_DAY"));
+				
+			}  
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return cinema;
+	}
 
 }
+
+

@@ -13,4 +13,22 @@
 		  FROM MOVIE M
 	</entry>
 	
+		<entry key="selectAllCinema">
+		SELECT 
+			   C.CINEMA_NAME
+			 , C.ADDRESS
+			 , C.PHONE
+			 , C.CLOSE_DAY 	
+		  FROM CINEMA C	  
+	</entry>
+	
+	<entry key="selectCinema">
+		SELECT 
+			   C.CINEMA_NAME
+			 , C.ADDRESS
+			 , C.PHONE
+			 , C.CLOSE_DAY 	
+		  FROM CINEMA C
+		 WHERE CINEMA_NAME = ? 		  
+	</entry>
 </properties>
