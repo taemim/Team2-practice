@@ -32,8 +32,8 @@ public class ReserveMenu {
 			
 			switch(no) {
 			case 1 : reserveController.registNewMember(inputMember()); break;
-			case 2 : reserveController.selectAllMovie(); break; 
-			case 3 : selectCinema(); break; 
+			case 2 : inputMovieMenu(); break; 
+			case 3 : inputCinemaMenu(); break; 
 			case 4 : break; 
 			case 5 : reserveController.selectReservation(inputUserId()); break; 
 			case 6 : reserveController.deleteReservation(inputUserId()); break; 
@@ -64,10 +64,40 @@ public class ReserveMenu {
 
 	}
 	
-	/* 상영관 조회 메뉴 */
-	public void selectCinema() {
+	/* 영화 조회 메뉴 */
+	public void inputMovieMenu() {
 		
-		System.out.println("\n*** 상영관 목록 조회 ***");
+		System.out.println("*** 영화 조회 메뉴 ***");
+		System.out.println("1. 모든 영화 목록 조회");
+		System.out.println("2. 현재 개봉작 조회");
+		System.out.println("3. 개봉 예정작 조회");
+		System.out.println("4. 영화 장르별 조회");
+		System.out.println("5. 메인 메뉴로 돌아가기");
+		int result;
+		
+		do {
+			System.out.print("메뉴를 선택하세요 : ");
+			int no = sc.nextInt();
+		
+			switch(no) {
+			case 1 : result = reserveController.selectAllMovie(); break;
+			case 2 : result = reserveController.selectIsRunMovie(2); break; 
+			case 3 : result = reserveController.selectIsRunMovie(3); break; 
+			case 4 : result = 0; break; 
+			case 0 : return;
+			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요."); 
+					  result= -1; break;
+		}
+		
+		} while(result < 0);
+		
+	}
+	
+	
+	/* 상영관 조회 메뉴 */
+	public void inputCinemaMenu() {
+		
+		System.out.println("\n*** 상영관 조회 메뉴 ***");
 
 		List<CinemaDTO> cinemaList = reserveController.selectCinemaList();
 		

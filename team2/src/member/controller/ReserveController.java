@@ -1,5 +1,6 @@
 package member.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,17 +36,39 @@ public class ReserveController {
 	}
 	
 	
-	/* 영화 조회용 메소드 */
-	public void selectAllMovie() {
+	/* 모든 영화 조회용 메소드 */
+	public int selectAllMovie() {
+		int result = -1;
 		
 		List<MovieDTO> movieList = reserveService.selectAllMovie();
 		
-		if(!movieList.isEmpty()) 
-			reserveResult.display1(movieList);
-		else 
-			System.out.println("조회실패!");
-		
+		if(!movieList.isEmpty()) {
+			reserveResult.displayMovie1(movieList);
+		 	result=1;
+		}else {
+			System.out.println("영화 목록이 없습니다.");			
+		}
+		return result;
 	}
+	
+	public int selectIsRunMovie(int no) {
+		
+		int result= -1;
+		List<MovieDTO> movieList = reserveService.selectAllMovie();
+		
+		if(!movieList.isEmpty()) {
+			if(no==2) 
+				reserveResult.displayMovie2(movieList);
+			if(no==3)
+				reserveResult.displayMovie3(movieList);
+		 	result=1;
+		}else {
+			System.out.println("영화 목록이 없습니다.");			
+		}
+		
+		return result;
+	}
+	
 	
 	/* 상영관 목록 조회용 메소드 */
 	public List<CinemaDTO> selectCinemaList() {

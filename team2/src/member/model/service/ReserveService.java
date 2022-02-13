@@ -40,7 +40,7 @@ public class ReserveService {
 		return result;
 	}
 	
-	/* 영화 조회용 메소드 */
+	/* 모든 영화 조회용 메소드 */
 	public List<MovieDTO> selectAllMovie() {
 		
 		con = getConnection();
@@ -54,6 +54,8 @@ public class ReserveService {
 		return movieList;
 				
 	}
+
+	
 	/* 상영관 이름 조회용 메소드 */
 	public List<CinemaDTO> selectAllCinema() {
 		con = getConnection();
@@ -110,12 +112,5 @@ public class ReserveService {
 						
 		return result;
 	}
-	
-	
-	/* 상영관 조회용 메소드 */
-	
-	/* 영화 예매 메소드 */
-	
-	/* 영화 예매 취소 메소드 */
-	
+
 }

@@ -2,6 +2,7 @@ package member.model.dto;
 
 public class CinemaDTO {
 	
+	private int cinemaNo;
 	private String cinemaName;
 	private String address;
 	private String phone;
