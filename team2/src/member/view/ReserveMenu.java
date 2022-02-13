@@ -117,7 +117,6 @@ public class ReserveMenu {
 			num++;
 		}
 		
-		String cineName =null;
 		int cineNo;
 		int result;
 		
@@ -125,20 +124,7 @@ public class ReserveMenu {
 			System.out.print("조회하실 상영관을 선택하세요: ");
 			cineNo=sc.nextInt();
 			result = reserveController.selectCinema(cineNo);
-		}while(result < 0);
-	}
-	
-	public String inputUserId() {
-		
-		System.out.print("회원 아이디 : ");
-		return sc.nextLine();
-	}
-	
-	public String inputPassword() {
-		
-		System.out.print("회원 비밀번호 : ");
-		
-		return sc.nextLine();
+		} while(result < 0);
 	}
 	
 	/* 영화 예매 메소드 */
@@ -156,20 +142,21 @@ public class ReserveMenu {
 		if(user.getName() !=null) {
 			System.out.println("\n*** 영화 예매하기 ***\n");
 			
-		/* 상영 정보 PK등록 메소드 */
-		ShowMovieDTO showMovie = inputMovie();
+			/* 상영 정보 PK등록 메소드 */
+			ShowMovieDTO showMovie = inputMovie();
 		
-		/* 인원 입력받기 */
-		System.out.print("관람하실 인원을 입력하세요 : ");
-		int peopleNo = sc.nextInt();
+			/* 인원 입력받기 */
+			System.out.print("관람하실 인원을 입력하세요 : ");
+			int peopleNo = sc.nextInt();
 		
 		
-		/* 좌석 입력받기 */
-		System.out.print("좌석번호를 입력하세요 : ");
-		sc.nextLine();
-		String seatNo = sc.nextLine();
+			/* 좌석 입력받기 */
+			System.out.print("좌석번호를 입력하세요 : ");
+			sc.nextLine();
+			String seatNo = sc.nextLine();
 
-		reserveController.insertReserve(user, showMovie, peopleNo, seatNo);
+			/* 입력받은 정보 controller로 전달 */
+			reserveController.insertReserve(user, showMovie, peopleNo, seatNo);
 		}
 		
 	}
@@ -213,5 +200,19 @@ public class ReserveMenu {
 		return inputMovie;
 	}
 				
+	public String inputUserId() {
+		
+		System.out.print("회원 아이디 : ");
+		return sc.nextLine();
+	}
+	
+	public String inputPassword() {
+		
+		System.out.print("회원 비밀번호 : ");
+		
+		return sc.nextLine();
+	}
+	
+	
 }
 
