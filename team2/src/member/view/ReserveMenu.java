@@ -38,7 +38,7 @@ public class ReserveMenu {
 			case 1 : reserveController.registNewMember(inputMember()); break;
 			case 2 : reserveController.selectAllMovie(); break; 
 			case 3 : selectCinema(); break; 
-			case 4 : break; 
+			case 4 : inputId(); break; 
 			case 5 : reserveController.selectReservation(inputUserId()); break; 
 			case 6 : reserveController.deleteReservation(inputUserId()); break; 
 			case 0 : return;
