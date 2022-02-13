@@ -153,19 +153,24 @@ public class ReserveMenu {
 				System.out.print("\n 예매하실 영화를 선택해 주세요 : ");
 				String inputMovie = sc.nextLine();
 				System.out.println("\n *** 예매할 영화 *** \n");
-				for(int i = 0; i < reserveController.selectAllCineMovie(cinemaName).size(); i++) {
+				
+				int moviePrice = 0;
+				String cinemaNo = "";
+				for(int i = 0; i < movieList.size(); i++) {
 					
-					ShowMovieDTO movie = reserveController.selectAllCineMovie(cinemaName).get(i);
+					ShowMovieDTO movie = movieList.get(i);
 					
 					if(movie.getMovieName().equals(inputMovie)) {
+						moviePrice = movie.getPrice();
+						cinemaNo = movie.getCinemaNo();
 						System.out.println((i + 1) + ". " + inputMovie + " / 상영 시간 : " + movie.getRunTime() + " / 잔여 좌석 수 : " + movie.getSeatCapacity());
 					}
 				}
 				
 				System.out.print("\n 예매하실 시간을 선택해 주세요 : ");
-				for(int i = 0; i < reserveController.selectAllCineMovie(cinemaName).size(); i++) {
+				for(int i = 0; i < movieList.size(); i++) {
 					
-					ShowMovieDTO movie = reserveController.selectAllCineMovie(cinemaName).get(i);
+					ShowMovieDTO movie = movieList.get(i);
 					
 					String inputTime = sc.nextLine();
 					movie.setRunTime(inputTime);
