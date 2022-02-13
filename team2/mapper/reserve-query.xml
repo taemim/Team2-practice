@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 쿼리작성 -->
+	<entry key ="selectAllmovies">
+		SELECT 
+			   M.MOVIE_NAME
+			 , M.GENRE
+			 , M.RELEASE_DATE
+			 , M.RUNINGTIME
+			 , M.AGE_LIMIT
+		  FROM MOVIE M
+	</entry>
+	
+		<entry key="selectAllCinema">
+		SELECT 
+			   C.CINEMA_NAME
+			 , C.ADDRESS
+			 , C.PHONE
+			 , C.CLOSE_DAY 	
+		  FROM CINEMA C	  
+	</entry>
+	
+	<entry key="selectCinema">
+		SELECT 
+			   C.CINEMA_NAME
+			 , C.ADDRESS
+			 , C.PHONE
+			 , C.CLOSE_DAY 	
+		  FROM CINEMA C
+		 WHERE CINEMA_NAME = ? 		  
+	</entry>
+	<entry key="insertUser">
+		INSERT
+		  INTO MOVIE_USER U
+		(
+		  U.USER_ID
+		, U.USER_PWD
+		, U.NAME
+		, U.PHONE
+		, U.AGE
+		)
+		VALUES
+		(
+		  ?
+		, ?
+		, ?
+		, ?
+		, ?
+		)
+	</entry>
+	<entry key="selectReservation">
+		SELECT
+		       *
+		  FROM RESERVE R
+		 WHERE R.USER_ID = ?
+	</entry>
+	<entry key="deleteReservation">
+		DELETE
+		  FROM RESERVE R
+		 WHERE R.USER_ID = ?
+	</entry>
+	<entry key="selectById">
+		SELECT
+			   U.*
+		  FROM MOVIE_USER U
+		 WHERE U.USER_ID = ?
+	</entry>
+	<entry key="selectAllCineMovie">
+		SELECT
+			   SM.CINEMA_NO
+			 , SM.CINEMA_NAME
+			 , SM.MOVIE_NAME
+			 , SM.RUN_DAY
+			 , SM.RUN_TIME
+			 , SM.SEAT_CAPACITY
+		  FROM SHOW_MOVIE SM
+		  JOIN MOVIE M ON(SM.MOVIE_NAME = M.MOVIE_NAME)
+		 WHERE SM.CINEMA_NAME = ?
+	</entry>
+</properties>
