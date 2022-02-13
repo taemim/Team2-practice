@@ -221,13 +221,12 @@ public class ReserveDAO {
 	}
 
 	/* id로 회원 조회용 메소드 */
-	public List<UserDTO> selectById(Connection con, String userId) {
+	public UserDTO selectById(Connection con, String userId) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		List<UserDTO> userList = null;
-		
+		UserDTO user = new UserDTO();
+			
 		String query = prop.getProperty("selectById");
 		
 		try {
@@ -237,18 +236,14 @@ public class ReserveDAO {
 			
 			rset = pstmt.executeQuery();
 			
-			userList = new ArrayList<>();
-			
 			if(rset.next()) {
-				UserDTO user = new UserDTO();
 				
 				user.setUserId(rset.getString("USER_ID"));
 				user.setUserPwd(rset.getString("USER_PWD"));
 				user.setName(rset.getString("NAME"));
 				user.setPhone(rset.getString("PHONE"));
 				user.setAge(rset.getString("AGE"));
-				
-				userList.add(user);
+			
 			}
 			
 		} catch (SQLException e) {
@@ -258,7 +253,7 @@ public class ReserveDAO {
 			close(pstmt);
 		}
 		
-		return userList;
+		return user;
 	}
 
 	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
@@ -300,6 +295,31 @@ public class ReserveDAO {
 		}
 		
 		return cineMovieList;
+	}
+
+	public int insertReserve(Connection con, UserDTO user, ShowMovieDTO showMovie, int peopleNo , int seatNo) {
+		
+		PreparedStatement pstmt = null; 
+		int result = 0;
+		
+		String query = prop.getProperty("insertReserve");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, user.getUserId());
+			pstmt.setString(2, showMovie.getCinemaNo());
+			pstmt.setInt(3, peopleNo);
+			pstmt.setInt(4, seatNo);
+			pstmt.setInt(5, (peopleNo*12000));
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	
+		return result;
 	}
 
 }

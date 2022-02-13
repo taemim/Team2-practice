@@ -1,6 +1,5 @@
 package member.view;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 
 import member.controller.ReserveController;
 import member.model.dto.CinemaDTO;
-import member.model.dto.ReserveDTO;
+import member.model.dto.MovieDTO;
 import member.model.dto.ShowMovieDTO;
 import member.model.dto.UserDTO;
 
@@ -38,7 +37,7 @@ public class ReserveMenu {
 			case 1 : reserveController.registNewMember(inputMember()); break;
 			case 2 : inputMovieMenu(); break; 
 			case 3 : inputCinemaMenu(); break; 
-			case 4 : inputId(); break; 
+			case 4 : inputReserve(); break; 
 			case 5 : reserveController.selectReservation(inputUserId()); break; 
 			case 6 : reserveController.deleteReservation(inputUserId()); break; 
 			case 0 : return;
@@ -120,7 +119,6 @@ public class ReserveMenu {
 			System.out.print("조회하실 상영관을 선택하세요: ");
 			cineNo=sc.nextInt();
 			result = reserveController.selectCinema(cineNo);
-			
 		}while(result < 0);
 	}
 	
@@ -138,81 +136,100 @@ public class ReserveMenu {
 	}
 	
 	/* 영화 예매 */
-
-	public void inputId() {
+	public void inputReserve() {
 		
-		List<UserDTO> userList = new ArrayList<>();
-		List<ReserveDTO> reserveList = new ArrayList<>();
-
-		int totalReservePrice = 0;
+		System.out.println("\n *** 회원 로그인 *** \n");
+		System.out.print("회원 아이디를 입력하세요 : ");
+		String inputId = sc.nextLine();
 		
-		System.out.println("\n *** 영화 예매를 위한 고객 정보 확인 *** \n");
-		System.out.print("고객 아이디를 입력하세요 : ");
-		String userId = sc.nextLine();
-
-		userList = reserveController.searchUserById(userId);
+		/* 회원 정보 PK등록 메소드*/
+		UserDTO user = new UserDTO();
+		user = reserveController.searchUserById(inputId);	
 		
-		for(UserDTO user : userList) {
-			if(user.getUserId().equals(userId)) {
-				System.out.println("\n *** 고객 정보가 존재합니다 *** \n");
-				
-				List<CinemaDTO> cinemaList = reserveController.selectAllCinema();
-				
-				System.out.println(" *** 예매 가능 극장 *** \n");
-				
-				for(int i = 0; i < cinemaList.size(); i++) {
-					System.out.println((i + 1) + ". " + cinemaList.get(i).getCinemaName() + " / 주소 : " + cinemaList.get(i).getAddress() + " / 휴무일 : " + cinemaList.get(i).getCloseDay());
-				}
-				
-				System.out.println("\n *** 영화관 선택 *** \n");
-				System.out.print("영화관을 선택해 주세요 : ");
-				String inputCine = sc.nextLine();
-				
-				String cinemaName = "";
-				for(CinemaDTO cine : cinemaList) {
-					if(cine.getCinemaName().equals(inputCine)) {
-						cinemaName = cine.getCinemaName();
-					}
-				}
-				
-				System.out.println("\n *** 예매 가능 영화 *** \n");
-				List<ShowMovieDTO> movieList = reserveController.selectAllCineMovie(cinemaName);
-				for(int i = 0; i < movieList.size(); i++) {
-					System.out.println((i + 1) + ". " + movieList.get(i).getMovieName() + " / 상영일 : " + movieList.get(i).getRunDay() + " / 상영 시간 : " + movieList.get(i).getRunTime() + " / 잔여 좌석 수 : " + movieList.get(i).getSeatCapacity());
-				}
-				
+		if(user.getName() !=null) {
+		/* 상영 정보 PK등록 메소드 */
+		ShowMovieDTO showMovie = inputMovie();
+		
+		/* 인원 입력받기 */
+		System.out.print("관람하실 인원을 입력하세요 : ");
+		int peopleNo = sc.nextInt();
+		
+		
+		/* 좌석 입력받기 */
+		System.out.print("좌석번호를 입력하세요 : ");
+		int seatNo = sc.nextInt();
 
-				System.out.print("\n 예매하실 영화를 선택해 주세요 : ");
-				String inputMovie = sc.nextLine();
-				System.out.println("\n *** 예매할 영화 *** \n");
-				
-				int moviePrice = 0;
-				String cinemaNo = "";
-				for(int i = 0; i < movieList.size(); i++) {
-					
-					ShowMovieDTO movie = movieList.get(i);
-					
-					if(movie.getMovieName().equals(inputMovie)) {
-						moviePrice = movie.getPrice();
-						cinemaNo = movie.getCinemaNo();
-						System.out.println((i + 1) + ". " + inputMovie + " / 상영 시간 : " + movie.getRunTime() + " / 잔여 좌석 수 : " + movie.getSeatCapacity());
-					}
-				}
-				
-				System.out.print("\n 예매하실 시간을 선택해 주세요 : ");
-				for(int i = 0; i < movieList.size(); i++) {
-					
-					ShowMovieDTO movie = movieList.get(i);
-					
-					String inputTime = sc.nextLine();
-					movie.setRunTime(inputTime);
-				}
-
-			}
-			
+		reserveController.insertReserve(user, showMovie, peopleNo, seatNo);
 		}
-	
-	/* 영화 수정 입력단 */
-	
+		
 	}
+	
+	/* 상영 영화 선택 메소드 */
+	public ShowMovieDTO inputMovie() {
+		
+		System.out.println("\n *** 영화관 선택 *** \n");
+		List<CinemaDTO> cinemaList = reserveController.selectCinemaList();
+		
+		int num = 1;
+		int No = 0;
+		
+		for(CinemaDTO cinema : cinemaList) {
+			System.out.println(num+". "+cinema.getCinemaName());
+			num++;
+		}
+		
+		System.out.print("영화관을 선택해 주세요 : ");
+		No = sc.nextInt();
+		
+		CinemaDTO cinema = new CinemaDTO();
+		cinema = cinemaList.get(No-1);
+
+		
+		System.out.println("\n *** 예매 가능 영화 *** \n");
+		List<ShowMovieDTO> movieList = reserveController.selectAllCineMovie(cinema.getCinemaName());
+		
+		num = 1;
+		for(ShowMovieDTO showMovie : movieList) {
+			System.out.println(num+". "+showMovie);
+			num++;
+		}
+		
+		System.out.print("관람하실 영화 번호를 선택하세요 : ");
+		No= sc.nextInt();
+		
+		ShowMovieDTO inputMovie = new ShowMovieDTO();
+		inputMovie = movieList.get(No-1);
+
+		return inputMovie;
+	}
+				
+
 }
+
+//		System.out.print("\n 예매하실 영화를 선택해 주세요 : ");
+//		String inputMovie = sc.nextLine();
+//		System.out.println("\n *** 예매할 영화 *** \n");
+//				
+//		int moviePrice = 0;
+//		String cinemaNo = "";
+//		for(int i = 0; i < movieList.size(); i++) {
+//					
+//			ShowMovieDTO movie = movieList.get(i);
+//					
+//			if(movie.getMovieName().equals(inputMovie)) {
+//				moviePrice = movie.getPrice();
+//				cinemaNo = movie.getCinemaNo();
+//				System.out.println((i + 1) + ". " + inputMovie + " / 상영 시간 : " + movie.getRunTime() + " / 잔여 좌석 수 : " + movie.getSeatCapacity());
+//			}
+//		}
+//				
+//				System.out.print("\n 예매하실 시간을 선택해 주세요 : ");
+//				for(int i = 0; i < movieList.size(); i++) {
+//					
+//					ShowMovieDTO movie = movieList.get(i);
+//					
+//					String inputTime = sc.nextLine();
+//					movie.setRunTime(inputTime);
+//			}
+
+

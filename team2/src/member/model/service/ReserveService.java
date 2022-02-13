@@ -8,6 +8,7 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import member.model.dao.ReserveDAO;
 import member.model.dto.CinemaDTO;
@@ -116,15 +117,17 @@ public class ReserveService {
 
 
 	/* id로 회원 조회용 메소드 */
-	public List<UserDTO> selectById(String userId) {
+	public UserDTO selectById(String userId) {
 		
 		Connection con = getConnection();
 		
-		List<UserDTO> userList = reserveDAO.selectById(con, userId);
+		UserDTO user = new UserDTO();
+		
+		user = reserveDAO.selectById(con, userId);
 		
 		close(con);
 		
-		return userList;
+		return user;
 	}
 
 	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
@@ -137,6 +140,24 @@ public class ReserveService {
 		close(con);
 		
 		return smList;
+	}
+
+	public int insertReserve(UserDTO user ,ShowMovieDTO showMovie, int peopleNo , int seatNo) {
+		Connection con = getConnection();
+		int result =0;
+		
+		result = reserveDAO.insertReserve(con, user, showMovie, peopleNo, seatNo);
+		
+		if (result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+		
+		return result;
+	
 	}
 
 	

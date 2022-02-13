@@ -98,12 +98,63 @@ public class ReserveController {
 		
 		if(cineName != null) {
 			CinemaDTO cinema = reserveService.selectCinema(cineName);
-			ReserveResult.display(cinema);
+			reserveResult.display(cinema);
 			result = 1;
 		}
 		return result;
 	}
+	
+	
+	public void inputReserve(Map<String, Object> reserveMap) {
+		
+		
+		
+	}
+	
+	/* id로 회원 조회용 메소드 */
+	public UserDTO searchUserById(String userId) {
+		
+		UserDTO user = new UserDTO();
+		
+		user = reserveService.selectById(userId);
+		
+		int result=0;
+		
+		/*고객이 맞는 지 확인 후 결과 출력*/
+		if(user.getName() != null) {		
+			result = 1;
+			reserveResult.displayLogin(result);
+		} else {
+			result = 0;
+			reserveResult.displayLogin(result);
+		}
+		
+		return user;
+	}
+	
+	
+	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
+	public List<ShowMovieDTO> selectAllCineMovie(String cinemaName) {
+		
+		List<ShowMovieDTO> smList = reserveService.selectAllCineMovie(cinemaName);
+		
+		return smList;
+	}
 
+	/* 영화 예매 - 영화 예매 insert*/
+	public void insertReserve(UserDTO user ,ShowMovieDTO showMovie, int peopleNo, int seatNo) {
+		
+		int result;
+		
+		result = reserveService.insertReserve(user, showMovie, peopleNo, seatNo);
+		
+		if (result > 0)
+			reserveResult.displayDmlResult("reserveSuccess");
+		else
+			reserveResult.displayDmlResult("reserveFailed");
+	}
+	
+	
 	/* 영화 예매 내역 조회용 메소드 */
 	public void selectReservation(String inputUserId) {
 		
@@ -114,7 +165,6 @@ public class ReserveController {
 		} else {
 			reserveResult.displayDmlResult("selectFailed");
 		}
-		
 	}
 
 	/* 영화 예매 취소용 메소드 */
@@ -130,28 +180,7 @@ public class ReserveController {
 		
 	}
 
-	/* id로 회원 조회용 메소드 */
-	public List<UserDTO> searchUserById(String userId) {
-		
-		List<UserDTO> userList = reserveService.selectById(userId);
-		
-		return userList;
-	}
 
-	/* 영화 예매 - 상영관 조회용 메소드 */
-	public List<CinemaDTO> selectAllCinema() {
-		
-		List<CinemaDTO> cinemaList = reserveService.selectAllCinema();
-		
-		return cinemaList;
-	}
 
-	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
-	public List<ShowMovieDTO> selectAllCineMovie(String cinemaName) {
-		
-		List<ShowMovieDTO> smList = reserveService.selectAllCineMovie(cinemaName);
-		
-		return smList;
-	}
 
 }
