@@ -56,7 +56,7 @@ public class ReserveService {
 		return movieList;
 				
 	}
-
+	/* 장르별 영화 조회 메소드 */
 	public List<MovieDTO> selectMovByGanre(String genre) {
 		con = getConnection();
 		
@@ -96,6 +96,7 @@ public class ReserveService {
 		return cinema;
 	}
 
+	/* 예매 조회용 메소드 */
 	public List<ReserveDTO> selectReservation(String inputUserId) {
 		
 		Connection con = getConnection();
@@ -106,7 +107,8 @@ public class ReserveService {
 		
 		return reserve;
 	}
-
+	
+	/* 예매 삭제용 메소드 */
 	public int deleteReservation(String inputUserId) {
 		
 		Connection con = getConnection();

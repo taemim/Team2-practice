@@ -219,11 +219,11 @@ public class ReserveDAO {
 			while(rset.next()) {
 				ReserveDTO reserve = new ReserveDTO();
 				reserve.setReserveNo(rset.getInt("RESERVE_NO"));				
-				reserve.setMovieName(rset.getString("CINEMA_NO"));
-				reserve.setCinemaName(rset.getString("CINEMA_NO"));
+				reserve.setMovieName(rset.getString("MOVIE_NAME"));
+				reserve.setCinemaName(rset.getString("CINEMA_NAME"));
 				reserve.setRunDay(rset.getDate("RUN_DAY"));
 				reserve.setRunTime(rset.getString("RUN_TIME"));
-				reserve.setUserName(rset.getString("USER_ID"));
+				reserve.setUserName(rset.getString("USER_NAME"));
 				reserve.setPplNum(rset.getInt("PPL_NUM"));
 				reserve.setSeatsNo(rset.getString("SEATS_NO"));
 				reserve.setPrice(rset.getInt("PRICE"));

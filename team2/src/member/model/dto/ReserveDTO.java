@@ -106,10 +106,12 @@ public class ReserveDTO {
 	public String toString() {
 		return  "\n *** 예매 내역 ***" 
 				+ "\n예약번호 :" + reserveNo 
-				+ "\n영화명 : " + movieName
 				+ "\n상영관 : " + cinemaName 
 				+ "\n날짜 : " + runDay 
-				+ " 시간 : " + runTime
+				+ "시간 : " + runTime
+				+ "\n----------------------------"
+				+ "\n영화명 : " + movieName
+				+ "\n----------------------------"
 				+ "\n이름 : " + userName 
 				+ "\n인원 : " + pplNum
 				+ "\n좌석번호 :" + seatsNo 

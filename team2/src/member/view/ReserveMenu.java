@@ -48,10 +48,9 @@ public class ReserveMenu {
 	}
 	/* 회원 등록을 위한 정보를 입력받기*/
 	public Map<String, String> inputMember() {
-		
+		System.out.println("\n*** 회원 가입 ***\n");
 		Map<String, String> map = new HashMap<>();
 		System.out.print("입력할 아이디 : ");
-//		sc.nextLine();
 		map.put("id", sc.nextLine());
 		System.out.print("입력할 비밀번호 : ");
 		map.put("pwd", sc.nextLine());
@@ -78,7 +77,7 @@ public class ReserveMenu {
 		int result;
 		
 		do {
-			System.out.print("메뉴를 선택하세요 : ");
+			System.out.print("\n메뉴를 선택하세요 : ");
 			int no = sc.nextInt();
 			sc.nextLine();
 		
@@ -107,7 +106,7 @@ public class ReserveMenu {
 	/* 상영관 조회 메뉴 */
 	public void inputCinemaMenu() {
 		
-		System.out.println("\n*** 상영관 조회 메뉴 ***");
+		System.out.println("\n*** 상영관 조회 메뉴 ***\n");
 
 		List<CinemaDTO> cinemaList = reserveController.selectCinemaList();
 		
@@ -145,15 +144,18 @@ public class ReserveMenu {
 	/* 영화 예매 메소드 */
 	public void inputReserve() {
 		
-		System.out.println("\n *** 회원 로그인 *** \n");
+		System.out.println("\n*** 회원 로그인 ***\n");
 		System.out.print("회원 아이디를 입력하세요 : ");
 		String inputId = sc.nextLine();
 		
 		/* 회원 정보 PK등록 메소드*/
 		UserDTO user = new UserDTO();
-		user = reserveController.searchUserById(inputId);	
+		user = reserveController.searchUserById(inputId);
 		
+		/*로그인 성공 시 예매 선택창*/
 		if(user.getName() !=null) {
+			System.out.println("\n*** 영화 예매하기 ***\n");
+			
 		/* 상영 정보 PK등록 메소드 */
 		ShowMovieDTO showMovie = inputMovie();
 		
@@ -175,7 +177,7 @@ public class ReserveMenu {
 	/* 상영 영화 선택 메소드 */
 	public ShowMovieDTO inputMovie() {
 		
-		System.out.println("\n *** 영화관 선택 *** \n");
+		System.out.println("\n*** 영화관 선택 ***\n");
 		List<CinemaDTO> cinemaList = reserveController.selectCinemaList();
 		
 		int num = 1;
@@ -193,7 +195,7 @@ public class ReserveMenu {
 		cinema = cinemaList.get(No-1);
 
 		
-		System.out.println("\n *** 예매 가능 영화 *** \n");
+		System.out.println("\n*** 예매 가능 영화 ***\n");
 		List<ShowMovieDTO> movieList = reserveController.selectAllCineMovie(cinema.getCinemaName());
 		
 		num = 1;
