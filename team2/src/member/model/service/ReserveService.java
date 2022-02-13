@@ -13,6 +13,7 @@ import member.model.dao.ReserveDAO;
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
 import member.model.dto.ReserveDTO;
+import member.model.dto.ShowMovieDTO;
 import member.model.dto.UserDTO;
 
 public class ReserveService {
@@ -112,5 +113,37 @@ public class ReserveService {
 						
 		return result;
 	}
+
+
+	/* id로 회원 조회용 메소드 */
+	public List<UserDTO> selectById(String userId) {
+		
+		Connection con = getConnection();
+		
+		List<UserDTO> userList = reserveDAO.selectById(con, userId);
+		
+		close(con);
+		
+		return userList;
+	}
+
+	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
+	public List<ShowMovieDTO> selectAllCineMovie(String cinemaName) {
+		
+		Connection con = getConnection();
+		
+		List<ShowMovieDTO> smList = reserveDAO.selectAllCineMovie(con, cinemaName);
+		
+		close(con);
+		
+		return smList;
+	}
+
+	
+	/* 상영관 조회용 메소드 */
+	
+	/* 영화 예매 메소드 */
+	
+	/* 영화 예매 취소 메소드 */
 
 }

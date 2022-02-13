@@ -6,11 +6,11 @@ public class UserDTO {
 	private String userPwd;
 	private String name;
 	private String phone;
-	private int age;
+	private String age;
 
 	public UserDTO() {}
 
-	public UserDTO(String userId, String userPwd, String name, String phone, int age) {
+	public UserDTO(String userId, String userPwd, String name, String phone, String age) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -51,11 +51,11 @@ public class UserDTO {
 		this.phone = phone;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

@@ -61,5 +61,22 @@
 		  FROM RESERVE R
 		 WHERE R.USER_ID = ?
 	</entry>
-	
+	<entry key="selectById">
+		SELECT
+			   U.*
+		  FROM MOVIE_USER U
+		 WHERE U.USER_ID = ?
+	</entry>
+	<entry key="selectAllCineMovie">
+		SELECT
+			   SM.CINEMA_NO
+			 , SM.CINEMA_NAME
+			 , SM.MOVIE_NAME
+			 , SM.RUN_DAY
+			 , SM.RUN_TIME
+			 , SM.SEAT_CAPACITY
+		  FROM SHOW_MOVIE SM
+		  JOIN MOVIE M ON(SM.MOVIE_NAME = M.MOVIE_NAME)
+		 WHERE SM.CINEMA_NAME = ?
+	</entry>
 </properties>

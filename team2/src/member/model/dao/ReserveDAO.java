@@ -15,6 +15,7 @@ import java.util.Properties;
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
 import member.model.dto.ReserveDTO;
+import member.model.dto.ShowMovieDTO;
 import member.model.dto.UserDTO;
 
 public class ReserveDAO {
@@ -43,7 +44,7 @@ public class ReserveDAO {
 			pstmt.setString(2, user.getUserPwd());
 			pstmt.setString(3, user.getName());
 			pstmt.setString(4, user.getPhone());
-			pstmt.setInt(5, user.getAge());
+			pstmt.setString(5, user.getAge());
 			
 			result = pstmt.executeUpdate();
 			
@@ -113,6 +114,9 @@ public class ReserveDAO {
 				CinemaDTO cinema =new CinemaDTO();
 
 				cinema.setCinemaName(rset.getString("CINEMA_NAME"));
+				cinema.setAddress(rset.getString("ADDRESS"));
+				cinema.setPhone(rset.getString("PHONE"));
+				cinema.setCloseDay(rset.getString("CLOSE_DAY"));
 				
 				cinemaList.add(cinema);
 				
@@ -176,11 +180,11 @@ public class ReserveDAO {
 			
 			while(rset.next()) {
 				ReserveDTO reserve = new ReserveDTO();
-				reserve.setReserve_no(rset.getInt("RESERVE_NO"));
-				reserve.setUser_id(rset.getString("USER_ID"));
-				reserve.setCinema_no(rset.getInt("CINEMA_NO"));
-				reserve.setPpl_num(rset.getInt("PPL_NUM"));
-				reserve.setSeats_no(rset.getString("SEATS_NO"));
+				reserve.setReserveNo(rset.getInt("RESERVE_NO"));
+				reserve.setUserId(rset.getString("USER_ID"));
+				reserve.setCinemaNo(rset.getString("CINEMA_NO"));
+				reserve.setPplNum(rset.getInt("PPL_NUM"));
+				reserve.setSeatsNo(rset.getString("SEATS_NO"));
 				reserve.setPrice(rset.getInt("PRICE"));
 				
 				reserveList.add(reserve);
@@ -214,6 +218,88 @@ public class ReserveDAO {
 		}
 		
 		return result;
+	}
+
+	/* id로 회원 조회용 메소드 */
+	public List<UserDTO> selectById(Connection con, String userId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<UserDTO> userList = null;
+		
+		String query = prop.getProperty("selectById");
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			userList = new ArrayList<>();
+			
+			if(rset.next()) {
+				UserDTO user = new UserDTO();
+				
+				user.setUserId(rset.getString("USER_ID"));
+				user.setUserPwd(rset.getString("USER_PWD"));
+				user.setName(rset.getString("NAME"));
+				user.setPhone(rset.getString("PHONE"));
+				user.setAge(rset.getString("AGE"));
+				
+				userList.add(user);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userList;
+	}
+
+	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
+	public List<ShowMovieDTO> selectAllCineMovie(Connection con, String cinemaName) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<ShowMovieDTO> cineMovieList = null;
+		
+		String query = prop.getProperty("selectAllCineMovie");
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, cinemaName);
+			
+			rset = pstmt.executeQuery();
+			
+			cineMovieList = new ArrayList<>();
+			
+			while(rset.next()) {
+				ShowMovieDTO sm = new ShowMovieDTO();
+				
+				sm.setCinemaNo(rset.getString("CINEMA_NO"));
+				sm.setCinemaName(rset.getString("CINEMA_NAME"));
+				sm.setMovieName(rset.getString("MOVIE_NAME"));
+				sm.setRunDay(rset.getDate("RUN_DAY"));
+				sm.setRunTime(rset.getString("RUN_TIME"));
+				sm.setSeatCapacity(rset.getInt("SEAT_CAPACITY"));
+				
+				cineMovieList.add(sm);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return cineMovieList;
 	}
 
 }

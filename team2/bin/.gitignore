@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 /common/
 /driver.properties
 /log4j.xml
 /log4jdbc.log4j2.properties
 /member/
 /run/
+=======
+/member/
+>>>>>>> refs/heads/yeonjee

@@ -7,6 +7,7 @@ import java.util.Map;
 import member.model.dto.CinemaDTO;
 import member.model.dto.MovieDTO;
 import member.model.dto.ReserveDTO;
+import member.model.dto.ShowMovieDTO;
 import member.model.dto.UserDTO;
 import member.model.service.ReserveService;
 import member.view.ReserveResult;
@@ -24,7 +25,7 @@ public class ReserveController {
 		userDTO.setUserPwd(requestMap.get("pwd"));
 		userDTO.setName(requestMap.get("name"));
 		userDTO.setPhone(requestMap.get("phone"));
-		userDTO.setAge(Integer.valueOf(requestMap.get("age")));
+		userDTO.setAge(requestMap.get("age"));
 		
 		int registResult = reserveService.insertUser(userDTO);
 		
@@ -127,6 +128,30 @@ public class ReserveController {
 			reserveResult.displayDmlResult("deleteFailed");
 		}	
 		
+	}
+
+	/* id로 회원 조회용 메소드 */
+	public List<UserDTO> searchUserById(String userId) {
+		
+		List<UserDTO> userList = reserveService.selectById(userId);
+		
+		return userList;
+	}
+
+	/* 영화 예매 - 상영관 조회용 메소드 */
+	public List<CinemaDTO> selectAllCinema() {
+		
+		List<CinemaDTO> cinemaList = reserveService.selectAllCinema();
+		
+		return cinemaList;
+	}
+
+	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
+	public List<ShowMovieDTO> selectAllCineMovie(String cinemaName) {
+		
+		List<ShowMovieDTO> smList = reserveService.selectAllCineMovie(cinemaName);
+		
+		return smList;
 	}
 
 }
