@@ -16,7 +16,6 @@ public class ReserveController {
 	/* view단에서 입력받은 정보를 가공하여 service로 전달*/
 	private ReserveService reserveService = new ReserveService();
 	private ReserveResult reserveResult = new ReserveResult();
-	
 	/* 회원 등록용 메소드 */
 	public void registNewMember(Map<String, String> requestMap) {
 		
@@ -52,6 +51,7 @@ public class ReserveController {
 		return result;
 	}
 	
+	/* 개봉일 기준으로 조회하는 메소드*/
 	public int selectIsRunMovie(int no) {
 		
 		int result= -1;
@@ -67,6 +67,20 @@ public class ReserveController {
 			System.out.println("영화 목록이 없습니다.");			
 		}
 		
+		return result;
+	}
+	
+	/* 장르별 영화 조회 메소드 */
+	public int selectMovieByGenre(String genre) {
+		int result= -1;
+		List<MovieDTO> movieList = reserveService.selectMovByGanre(genre);
+		
+		if(!movieList.isEmpty()) {
+			reserveResult.displayMovie1(movieList);
+		 	result=1;
+		}else {
+			System.out.println("영화 목록이 없습니다.");			
+		}
 		return result;
 	}
 	
@@ -142,7 +156,7 @@ public class ReserveController {
 	}
 
 	/* 영화 예매 - 영화 예매 insert*/
-	public void insertReserve(UserDTO user ,ShowMovieDTO showMovie, int peopleNo, int seatNo) {
+	public void insertReserve(UserDTO user ,ShowMovieDTO showMovie, int peopleNo, String seatNo) {
 		
 		int result;
 		

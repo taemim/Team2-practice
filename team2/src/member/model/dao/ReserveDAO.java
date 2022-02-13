@@ -95,6 +95,44 @@ public class ReserveDAO {
 		return movieList;
 	}
 
+	public List<MovieDTO> selectMovieByGenre(Connection con, String genre) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		
+		List<MovieDTO> movieList = null; 
+		
+		String query = prop.getProperty("selectmoviesByGenre");
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, genre);
+			rset = pstmt.executeQuery();
+			
+			movieList= new ArrayList<>();
+			while(rset.next()) {
+				
+				MovieDTO movie =new MovieDTO();
+
+				movie.setMovieName(rset.getString("MOVIE_NAME"));
+				movie.setGenre(rset.getString("GENRE"));
+				movie.setReleaseDate(rset.getDate("RELEASE_DATE"));
+				movie.setRuningTime(rset.getInt("RUNINGTIME"));
+				movie.setAgeLimit(rset.getInt("AGE_LIMIT"));
+				
+				movieList.add(movie);
+				
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return movieList;
+	}
+
 	public List<CinemaDTO> selectAllCinemaName(Connection con) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null; 
@@ -160,7 +198,8 @@ public class ReserveDAO {
 		return cinema;
 	}
 
-	public List<ReserveDTO> selectRevervation(Connection con, String inputUserId) {
+	/*예매 조회용 메소드*/
+	public List<ReserveDTO> selectReservation(Connection con, String inputUserId) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -177,12 +216,14 @@ public class ReserveDAO {
 			
 			reserveList = new ArrayList();
 
-			
 			while(rset.next()) {
 				ReserveDTO reserve = new ReserveDTO();
-				reserve.setReserveNo(rset.getInt("RESERVE_NO"));
-				reserve.setUserId(rset.getString("USER_ID"));
-				reserve.setCinemaNo(rset.getString("CINEMA_NO"));
+				reserve.setReserveNo(rset.getInt("RESERVE_NO"));				
+				reserve.setMovieName(rset.getString("CINEMA_NO"));
+				reserve.setCinemaName(rset.getString("CINEMA_NO"));
+				reserve.setRunDay(rset.getDate("RUN_DAY"));
+				reserve.setRunTime(rset.getString("RUN_TIME"));
+				reserve.setUserName(rset.getString("USER_ID"));
 				reserve.setPplNum(rset.getInt("PPL_NUM"));
 				reserve.setSeatsNo(rset.getString("SEATS_NO"));
 				reserve.setPrice(rset.getInt("PRICE"));
@@ -256,7 +297,7 @@ public class ReserveDAO {
 		return user;
 	}
 
-	/* 영화 예매 - 상영관의 예매 가능 영화 조회용 메소드 */
+	/* 예매 가능 영화 조회용 메소드 */
 	public List<ShowMovieDTO> selectAllCineMovie(Connection con, String cinemaName) {
 		
 		PreparedStatement pstmt = null;
@@ -297,7 +338,7 @@ public class ReserveDAO {
 		return cineMovieList;
 	}
 
-	public int insertReserve(Connection con, UserDTO user, ShowMovieDTO showMovie, int peopleNo , int seatNo) {
+	public int insertReserve(Connection con, UserDTO user, ShowMovieDTO showMovie, int peopleNo , String seatNo) {
 		
 		PreparedStatement pstmt = null; 
 		int result = 0;
@@ -309,7 +350,7 @@ public class ReserveDAO {
 			pstmt.setString(1, user.getUserId());
 			pstmt.setString(2, showMovie.getCinemaNo());
 			pstmt.setInt(3, peopleNo);
-			pstmt.setInt(4, seatNo);
+			pstmt.setString(4, seatNo);
 			pstmt.setInt(5, (peopleNo*12000));
 			result = pstmt.executeUpdate();
 			

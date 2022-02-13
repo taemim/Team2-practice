@@ -13,7 +13,18 @@
 		  FROM MOVIE M
 	</entry>
 	
-		<entry key="selectAllCinema">
+	<entry key ="selectmoviesByGenre">
+		SELECT 
+			   M.MOVIE_NAME
+			 , M.GENRE
+			 , M.RELEASE_DATE
+			 , M.RUNINGTIME
+			 , M.AGE_LIMIT
+		  FROM MOVIE M
+		  WHERE GENRE = ?
+	</entry>
+	
+	<entry key="selectAllCinema">
 		SELECT 
 			   C.CINEMA_NAME
 			 , C.ADDRESS
@@ -52,9 +63,15 @@
 	</entry>
 	<entry key="selectReservation">
 		SELECT
-		       *
+		       R.*
+		      , S.*
+		      , M.*
 		  FROM RESERVE R
+		  JOIN MOVIE_USER S ON (R.USER_ID = S.USER_ID)
+		  JOIN SHOW_MOVIE M ON (R.CINEMA_NO = M.CINEMA_NO)
 		 WHERE R.USER_ID = ?
+		 
+		 
 	</entry>
 	<entry key="deleteReservation">
 		DELETE

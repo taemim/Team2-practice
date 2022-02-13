@@ -47,7 +47,7 @@ public class ReserveService {
 		
 		con = getConnection();
 		
-		List<MovieDTO> movieList = new ArrayList();
+		List<MovieDTO> movieList = new ArrayList<>();
 		
 		movieList = reserveDAO.selectAllMovie(con);
 		
@@ -57,6 +57,17 @@ public class ReserveService {
 				
 	}
 
+	public List<MovieDTO> selectMovByGanre(String genre) {
+		con = getConnection();
+		
+		List<MovieDTO> movieList = new ArrayList<>();
+		
+		movieList = reserveDAO.selectMovieByGenre(con, genre);
+		
+		close(con);
+		
+		return movieList;
+	}
 	
 	/* 상영관 이름 조회용 메소드 */
 	public List<CinemaDTO> selectAllCinema() {
@@ -89,7 +100,7 @@ public class ReserveService {
 		
 		Connection con = getConnection();
 		
-		List<ReserveDTO> reserve = reserveDAO.selectRevervation(con, inputUserId);
+		List<ReserveDTO> reserve = reserveDAO.selectReservation(con, inputUserId);
 		
 		close(con);
 		
@@ -141,8 +152,9 @@ public class ReserveService {
 		
 		return smList;
 	}
-
-	public int insertReserve(UserDTO user ,ShowMovieDTO showMovie, int peopleNo , int seatNo) {
+	
+	/* 영화 예매 insert 메소드*/
+	public int insertReserve(UserDTO user ,ShowMovieDTO showMovie, int peopleNo , String seatNo) {
 		Connection con = getConnection();
 		int result =0;
 		
@@ -159,12 +171,5 @@ public class ReserveService {
 		return result;
 	
 	}
-
-	
-	/* 상영관 조회용 메소드 */
-	
-	/* 영화 예매 메소드 */
-	
-	/* 영화 예매 취소 메소드 */
 
 }

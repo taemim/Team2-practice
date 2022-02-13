@@ -63,8 +63,8 @@ public class MovieDTO {
 
 	@Override
 	public String toString() {
-		return "MovieDTO [movieName=" + movieName + ", genre=" + genre + ", releaseDate=" + releaseDate
-				+ ", runingTime=" + runingTime + ", ageLimit=" + ageLimit + "]";
+		return "[" + movieName + " | 장르 : " + genre + " | 개봉일 : " + releaseDate
+				+ " | 런타임 : " + runingTime + " | 관람 등급 : " + ageLimit + "세 이상 관람가능 ]";
 	}
 	
 	

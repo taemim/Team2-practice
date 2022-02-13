@@ -84,9 +84,7 @@ public class ShowMovieDTO {
 
 	@Override
 	public String toString() {
-		return "ShowMovieDTO [cinemaNo=" + cinemaNo + ", cinemaName=" + cinemaName + ", movieName=" + movieName
-				+ ", runDay=" + runDay + ", runTime=" + runTime + ", seatCapacity=" + seatCapacity + ", price=" + price
-				+ "]";
+		return "[" + movieName + " | 상영일: " + runDay + " | 상영시간: "+ runTime + " | 잔여석 : " + seatCapacity + "]";
 	}
 	
 }

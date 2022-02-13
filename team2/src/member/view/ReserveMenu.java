@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import member.controller.ReserveController;
 import member.model.dto.CinemaDTO;
-import member.model.dto.MovieDTO;
 import member.model.dto.ShowMovieDTO;
 import member.model.dto.UserDTO;
 
@@ -70,23 +69,24 @@ public class ReserveMenu {
 	/* 영화 조회 메뉴 */
 	public void inputMovieMenu() {
 		
-		System.out.println("*** 영화 조회 메뉴 ***");
+		System.out.println("\n*** 영화 조회 메뉴 ***\n");
 		System.out.println("1. 모든 영화 목록 조회");
 		System.out.println("2. 현재 개봉작 조회");
 		System.out.println("3. 개봉 예정작 조회");
 		System.out.println("4. 영화 장르별 조회");
-		System.out.println("5. 메인 메뉴로 돌아가기");
+		System.out.println("0. 메인 메뉴로 돌아가기");
 		int result;
 		
 		do {
 			System.out.print("메뉴를 선택하세요 : ");
 			int no = sc.nextInt();
+			sc.nextLine();
 		
 			switch(no) {
 			case 1 : result = reserveController.selectAllMovie(); break;
 			case 2 : result = reserveController.selectIsRunMovie(2); break; 
 			case 3 : result = reserveController.selectIsRunMovie(3); break; 
-			case 4 : result = 0; break; 
+			case 4 : result = reserveController.selectMovieByGenre(inputGenre()); break; 
 			case 0 : return;
 			default : System.out.println("잘못된 번호입니다. 다시 입력해주세요."); 
 					  result= -1; break;
@@ -96,6 +96,13 @@ public class ReserveMenu {
 		
 	}
 	
+	/* 장르별 영화 조회용 장르 입력 메소드 */
+	private String inputGenre() {
+		System.out.print("조회할 장르를 입력해주세요 : ");
+		String genre = sc.nextLine();
+		
+		return genre;
+	}
 	
 	/* 상영관 조회 메뉴 */
 	public void inputCinemaMenu() {
@@ -135,7 +142,7 @@ public class ReserveMenu {
 		return sc.nextLine();
 	}
 	
-	/* 영화 예매 */
+	/* 영화 예매 메소드 */
 	public void inputReserve() {
 		
 		System.out.println("\n *** 회원 로그인 *** \n");
@@ -157,7 +164,8 @@ public class ReserveMenu {
 		
 		/* 좌석 입력받기 */
 		System.out.print("좌석번호를 입력하세요 : ");
-		int seatNo = sc.nextInt();
+		sc.nextLine();
+		String seatNo = sc.nextLine();
 
 		reserveController.insertReserve(user, showMovie, peopleNo, seatNo);
 		}
@@ -203,33 +211,5 @@ public class ReserveMenu {
 		return inputMovie;
 	}
 				
-
 }
-
-//		System.out.print("\n 예매하실 영화를 선택해 주세요 : ");
-//		String inputMovie = sc.nextLine();
-//		System.out.println("\n *** 예매할 영화 *** \n");
-//				
-//		int moviePrice = 0;
-//		String cinemaNo = "";
-//		for(int i = 0; i < movieList.size(); i++) {
-//					
-//			ShowMovieDTO movie = movieList.get(i);
-//					
-//			if(movie.getMovieName().equals(inputMovie)) {
-//				moviePrice = movie.getPrice();
-//				cinemaNo = movie.getCinemaNo();
-//				System.out.println((i + 1) + ". " + inputMovie + " / 상영 시간 : " + movie.getRunTime() + " / 잔여 좌석 수 : " + movie.getSeatCapacity());
-//			}
-//		}
-//				
-//				System.out.print("\n 예매하실 시간을 선택해 주세요 : ");
-//				for(int i = 0; i < movieList.size(); i++) {
-//					
-//					ShowMovieDTO movie = movieList.get(i);
-//					
-//					String inputTime = sc.nextLine();
-//					movie.setRunTime(inputTime);
-//			}
-
 

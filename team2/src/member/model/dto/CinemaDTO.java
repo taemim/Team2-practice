@@ -52,7 +52,7 @@ public class CinemaDTO {
 
 	@Override
 	public String toString() {
-		return "CinemaDTO [cinemaName=" + cinemaName + ", address=" + address + ", phone=" + phone + ", closeDay="
+		return "[" +cinemaName + " | 주소 : " + address + " | 영업번호 : " + phone +  " | 휴점일 : "
 				+ closeDay + "]";
 	}
 
