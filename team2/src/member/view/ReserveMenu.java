@@ -150,9 +150,26 @@ public class ReserveMenu {
 					System.out.println((i + 1) + ". " + movieList.get(i).getMovieName() + " / 상영일 : " + movieList.get(i).getRunDay() + " / 상영 시간 : " + movieList.get(i).getRunTime() + " / 잔여 좌석 수 : " + movieList.get(i).getSeatCapacity());
 				}
 				
-				System.out.println("\n *** 예매할 영화 *** \n");
-				System.out.print("예매하실 영화를 선택해 주세요 : ");
+				System.out.print("\n 예매하실 영화를 선택해 주세요 : ");
 				String inputMovie = sc.nextLine();
+				System.out.println("\n *** 예매할 영화 *** \n");
+				for(int i = 0; i < reserveController.selectAllCineMovie(cinemaName).size(); i++) {
+					
+					ShowMovieDTO movie = reserveController.selectAllCineMovie(cinemaName).get(i);
+					
+					if(movie.getMovieName().equals(inputMovie)) {
+						System.out.println((i + 1) + ". " + inputMovie + " / 상영 시간 : " + movie.getRunTime() + " / 잔여 좌석 수 : " + movie.getSeatCapacity());
+					}
+				}
+				
+				System.out.print("\n 예매하실 시간을 선택해 주세요 : ");
+				for(int i = 0; i < reserveController.selectAllCineMovie(cinemaName).size(); i++) {
+					
+					ShowMovieDTO movie = reserveController.selectAllCineMovie(cinemaName).get(i);
+					
+					String inputTime = sc.nextLine();
+					movie.setRunTime(inputTime);
+				}
 				
 			}
 			
