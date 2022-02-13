@@ -56,15 +56,28 @@ public class ReserveController {
 		
 	}
 	
-	public void selectCinema(String cineName) {
+	/* 선택한 상영관 조회용 메소드 */
+	public int selectCinema(int cineNo) {
 		
-		if(cineName !=null) {
+		String cineName = null;
+		int result = -1;
+		
+		switch(cineNo) {
+		case 1 : cineName = "씨네역삼"; break;
+		case 2 : cineName = "씨네인천"; break;
+		case 3 : cineName = "씨네부산"; break;
+		case 4 : cineName = "씨네광주"; break;
+		case 5 : cineName = "씨네울산"; break;
+		case 6 : cineName = "씨네부천"; break;
+		default : System.out.println("잘못된 번호입니다. 다시 입력해주세요."); break;
+		}
+		
+		if(cineName != null) {
 			CinemaDTO cinema = reserveService.selectCinema(cineName);
 			ReserveResult.display(cinema);
+			result = 1;
 		}
-		else {
-			System.out.println("메인메뉴로 돌아갑니다.");			
-		}
+		return result;
 	}
 
 	/* 영화 예매 내역 조회용 메소드 */

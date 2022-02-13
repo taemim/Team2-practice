@@ -22,12 +22,12 @@ public class ReserveResult {
 		}
 		
 	}
-
+	/* 모든 영화 리스트 조회 결과 */
 	public void display1(List<MovieDTO> movieList) {
 		for(MovieDTO movie : movieList) 
 			System.out.println(movie);
 	}
-
+	/* 선택한 상영관 조회 결과 */
 	public static void display(CinemaDTO cinema) {
 		System.out.println(cinema);
 	}

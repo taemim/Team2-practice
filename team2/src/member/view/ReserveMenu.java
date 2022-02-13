@@ -33,7 +33,7 @@ public class ReserveMenu {
 			switch(no) {
 			case 1 : reserveController.registNewMember(inputMember()); break;
 			case 2 : reserveController.selectAllMovie(); break; 
-			case 3 : reserveController.selectCinema(selectCinema()); break; 
+			case 3 : selectCinema(); break; 
 			case 4 : break; 
 			case 5 : reserveController.selectReservation(inputUserId()); break; 
 			case 6 : reserveController.deleteReservation(inputUserId()); break; 
@@ -65,37 +65,30 @@ public class ReserveMenu {
 	}
 	
 	/* 상영관 조회 메뉴 */
-	public String selectCinema() {
+	public void selectCinema() {
 		
 		System.out.println("\n*** 상영관 목록 조회 ***");
-				
+
 		List<CinemaDTO> cinemaList = reserveController.selectCinemaList();
-		int num=1;
+		
+		int num = 1;
 		
 		for(CinemaDTO cinema : cinemaList) {
 			System.out.println(num+". "+cinema.getCinemaName());
 			num++;
 		}
+		
 		String cineName =null;
-		int no = 0;
+		int cineNo;
+		int result;
 		
 		do{
-			System.out.print("조회하실 상영관을 선택하세요 : ");
-			no=sc.nextInt();
+			System.out.print("조회하실 상영관을 선택하세요: ");
+			cineNo=sc.nextInt();
+			result = reserveController.selectCinema(cineNo);
 			
-			switch(no) {
-			case 1 : cineName = "씨네역삼"; no=0; continue;
-			case 2 : cineName = "씨네인천"; no=0; continue;
-			case 3 : cineName = "씨네부산"; no=0; continue; 
-			case 4 : cineName = "씨네광주"; no=0; continue;
-			case 5 : cineName = "씨네울산"; no=0; continue;
-			case 6 : cineName = "씨네부천"; no=0; continue;
-			default : System.out.println("잘못된 번호입니다."); continue;
-			
-			}
-		}while(no!=0 && no<num);
+		}while(result < 0);
 
-		return cineName; 
 	}
 	
 	public String inputUserId() {

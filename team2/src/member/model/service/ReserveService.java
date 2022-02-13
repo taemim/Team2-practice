@@ -43,7 +43,7 @@ public class ReserveService {
 	/* 영화 조회용 메소드 */
 	public List<MovieDTO> selectAllMovie() {
 		
-		Connection con = getConnection();
+		con = getConnection();
 		
 		List<MovieDTO> movieList = new ArrayList();
 		
@@ -56,9 +56,9 @@ public class ReserveService {
 	}
 	/* 상영관 이름 조회용 메소드 */
 	public List<CinemaDTO> selectAllCinema() {
-		Connection con = getConnection();
+		con = getConnection();
 		
-		List<CinemaDTO> cinemaList = new ArrayList();
+		List<CinemaDTO> cinemaList = new ArrayList<>();
 		
 		cinemaList = reserveDAO.selectAllCinemaName(con);
 		
@@ -70,7 +70,7 @@ public class ReserveService {
 	/* 모든 상영관 조회용 메소드 */
 	public CinemaDTO selectCinema(String cineName) {
 		
-		Connection con = getConnection();
+		con = getConnection();
 		
 		CinemaDTO cinema = new CinemaDTO();
 		
