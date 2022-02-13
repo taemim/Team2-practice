@@ -2,63 +2,63 @@ package member.model.dto;
 
 public class ReserveDTO {
 	
-	private int reserve_no;
-	private String user_id;
-	private int cinema_no;
-	private int ppl_num;
-	private String seats_no;
+	private int reserveNo;
+	private String userId;
+	private String cinemaNo;
+	private int pplNum;
+	private String seatsNo;
 	private int price;
 	
 	public ReserveDTO() {}
 
-	public ReserveDTO(int reserve_no, String user_id, int cinema_no, int ppl_num, String seats_no, int price) {
+	public ReserveDTO(int reserveNo, String userId, String cinemaNo, int pplNum, String seatsNo, int price) {
 		super();
-		this.reserve_no = reserve_no;
-		this.user_id = user_id;
-		this.cinema_no = cinema_no;
-		this.ppl_num = ppl_num;
-		this.seats_no = seats_no;
+		this.reserveNo = reserveNo;
+		this.userId = userId;
+		this.cinemaNo = cinemaNo;
+		this.pplNum = pplNum;
+		this.seatsNo = seatsNo;
 		this.price = price;
 	}
 
-	public int getReserve_no() {
-		return reserve_no;
+	public int getReserveNo() {
+		return reserveNo;
 	}
 
-	public void setReserve_no(int reserve_no) {
-		this.reserve_no = reserve_no;
+	public void setReserveNo(int reserveNo) {
+		this.reserveNo = reserveNo;
 	}
 
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public int getCinema_no() {
-		return cinema_no;
+	public String getCinemaNo() {
+		return cinemaNo;
 	}
 
-	public void setCinema_no(int cinema_no) {
-		this.cinema_no = cinema_no;
+	public void setCinemaNo(String cinemaNo) {
+		this.cinemaNo = cinemaNo;
 	}
 
-	public int getPpl_num() {
-		return ppl_num;
+	public int getPplNum() {
+		return pplNum;
 	}
 
-	public void setPpl_num(int ppl_num) {
-		this.ppl_num = ppl_num;
+	public void setPplNum(int pplNum) {
+		this.pplNum = pplNum;
 	}
 
-	public String getSeats_no() {
-		return seats_no;
+	public String getSeatsNo() {
+		return seatsNo;
 	}
 
-	public void setSeats_no(String seats_no) {
-		this.seats_no = seats_no;
+	public void setSeatsNo(String seatsNo) {
+		this.seatsNo = seatsNo;
 	}
 
 	public int getPrice() {
@@ -71,10 +71,8 @@ public class ReserveDTO {
 
 	@Override
 	public String toString() {
-		return "ReserveDTO [reserve_no=" + reserve_no + ", user_id=" + user_id + ", cinema_no=" + cinema_no
-				+ ", ppl_num=" + ppl_num + ", seats_no=" + seats_no + ", price=" + price + "]";
+		return "ReserveDTO [reserveNo=" + reserveNo + ", userId=" + userId + ", cinemaNo=" + cinemaNo + ", pplNum="
+				+ pplNum + ", seatsNo=" + seatsNo + ", price=" + price + "]";
 	}
-	
-	
 
 }
