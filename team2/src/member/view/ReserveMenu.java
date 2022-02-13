@@ -38,7 +38,7 @@ public class ReserveMenu {
 			case 1 : reserveController.registNewMember(inputMember()); break;
 			case 2 : inputMovieMenu(); break; 
 			case 3 : inputCinemaMenu(); break; 
-			case 4 : inputReserve(); break; 
+			case 4 : inputId(); break; 
 			case 5 : reserveController.selectReservation(inputUserId()); break; 
 			case 6 : reserveController.deleteReservation(inputUserId()); break; 
 			case 0 : return;
@@ -138,21 +138,18 @@ public class ReserveMenu {
 	}
 	
 	/* 영화 예매 */
-	public void inputReserve() {
+
+	public void inputId() {
 		
 		List<UserDTO> userList = new ArrayList<>();
-		
-		Map reserveInput = new HashMap();
-		
 		List<ReserveDTO> reserveList = new ArrayList<>();
-		
+
 		int totalReservePrice = 0;
 		
 		System.out.println("\n *** 영화 예매를 위한 고객 정보 확인 *** \n");
 		System.out.print("고객 아이디를 입력하세요 : ");
 		String userId = sc.nextLine();
-		
-		/* 유저 조회용 메소드 */
+
 		userList = reserveController.searchUserById(userId);
 		
 		for(UserDTO user : userList) {
@@ -184,9 +181,32 @@ public class ReserveMenu {
 					System.out.println((i + 1) + ". " + movieList.get(i).getMovieName() + " / 상영일 : " + movieList.get(i).getRunDay() + " / 상영 시간 : " + movieList.get(i).getRunTime() + " / 잔여 좌석 수 : " + movieList.get(i).getSeatCapacity());
 				}
 				
-				System.out.println("\n *** 예매할 영화 *** \n");
-				System.out.print("예매하실 영화를 선택해 주세요 : ");
+
+				System.out.print("\n 예매하실 영화를 선택해 주세요 : ");
 				String inputMovie = sc.nextLine();
+				System.out.println("\n *** 예매할 영화 *** \n");
+				
+				int moviePrice = 0;
+				String cinemaNo = "";
+				for(int i = 0; i < movieList.size(); i++) {
+					
+					ShowMovieDTO movie = movieList.get(i);
+					
+					if(movie.getMovieName().equals(inputMovie)) {
+						moviePrice = movie.getPrice();
+						cinemaNo = movie.getCinemaNo();
+						System.out.println((i + 1) + ". " + inputMovie + " / 상영 시간 : " + movie.getRunTime() + " / 잔여 좌석 수 : " + movie.getSeatCapacity());
+					}
+				}
+				
+				System.out.print("\n 예매하실 시간을 선택해 주세요 : ");
+				for(int i = 0; i < movieList.size(); i++) {
+					
+					ShowMovieDTO movie = movieList.get(i);
+					
+					String inputTime = sc.nextLine();
+					movie.setRunTime(inputTime);
+				}
 
 			}
 			
