@@ -214,7 +214,7 @@ public class ReserveDAO {
 			
 			rset = pstmt.executeQuery();
 			
-			reserveList = new ArrayList();
+			reserveList = new ArrayList<>();
 
 			while(rset.next()) {
 				ReserveDTO reserve = new ReserveDTO();
@@ -223,7 +223,7 @@ public class ReserveDAO {
 				reserve.setCinemaName(rset.getString("CINEMA_NAME"));
 				reserve.setRunDay(rset.getDate("RUN_DAY"));
 				reserve.setRunTime(rset.getString("RUN_TIME"));
-				reserve.setUserName(rset.getString("USER_NAME"));
+				reserve.setUserName(rset.getString("NAME"));
 				reserve.setPplNum(rset.getInt("PPL_NUM"));
 				reserve.setSeatsNo(rset.getString("SEATS_NO"));
 				reserve.setPrice(rset.getInt("PRICE"));
@@ -262,18 +262,19 @@ public class ReserveDAO {
 	}
 
 	/* id로 회원 조회용 메소드 */
-	public UserDTO selectById(Connection con, String userId) {
+	public UserDTO selectUser(Connection con, String userId, String inputPwd) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		UserDTO user = new UserDTO();
 			
-		String query = prop.getProperty("selectById");
+		String query = prop.getProperty("selectUser");
 		
 		try {
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, userId);
+			pstmt.setString(2, inputPwd);
 			
 			rset = pstmt.executeQuery();
 			

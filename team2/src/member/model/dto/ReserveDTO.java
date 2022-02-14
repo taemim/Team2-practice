@@ -108,7 +108,7 @@ public class ReserveDTO {
 				+ "\n예약번호 :" + reserveNo 
 				+ "\n상영관 : " + cinemaName 
 				+ "\n날짜 : " + runDay 
-				+ "시간 : " + runTime
+				+ " 시간 : " + runTime
 				+ "\n----------------------------"
 				+ "\n영화명 : " + movieName
 				+ "\n----------------------------"

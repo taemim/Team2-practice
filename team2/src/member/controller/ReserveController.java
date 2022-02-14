@@ -119,18 +119,12 @@ public class ReserveController {
 	}
 	
 	
-	public void inputReserve(Map<String, Object> reserveMap) {
-		
-		
-		
-	}
-	
 	/* id로 회원 조회용 메소드 */
-	public UserDTO searchUserById(String userId) {
+	public UserDTO searchUser(String userId, String inputPwd) {
 		
 		UserDTO user = new UserDTO();
 		
-		user = reserveService.selectById(userId);
+		user = reserveService.selectUser(userId, inputPwd);
 		
 		int result=0;
 		

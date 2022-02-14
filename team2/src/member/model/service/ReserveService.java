@@ -130,13 +130,13 @@ public class ReserveService {
 
 
 	/* id로 회원 조회용 메소드 */
-	public UserDTO selectById(String userId) {
+	public UserDTO selectUser(String userId, String inputPwd) {
 		
 		Connection con = getConnection();
 		
 		UserDTO user = new UserDTO();
 		
-		user = reserveDAO.selectById(con, userId);
+		user = reserveDAO.selectUser(con, userId, inputPwd);
 		
 		close(con);
 		

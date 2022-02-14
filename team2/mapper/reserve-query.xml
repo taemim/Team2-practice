@@ -63,7 +63,7 @@
 	</entry>
 	<entry key="selectReservation">
 		SELECT
-		       R.*
+		        R.*
 		      , S.*
 		      , M.*
 		  FROM RESERVE R
@@ -78,12 +78,15 @@
 		  FROM RESERVE R
 		 WHERE R.USER_ID = ?
 	</entry>
-	<entry key="selectById">
+	
+	<entry key="selectUser">
 		SELECT
 			   U.*
 		  FROM MOVIE_USER U
 		 WHERE U.USER_ID = ?
+		   AND U.USER_PWD = ?
 	</entry>
+	
 	<entry key="selectAllCineMovie">
 		SELECT
 			   SM.CINEMA_NO

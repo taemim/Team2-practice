@@ -72,7 +72,7 @@ public class ReserveResult {
 		if(result==1) {
 			System.out.println("\n로그인 되었습니다.\n");
 		} else {
-			System.out.println("\n잘못된 아이디 입니다. 다시 로그인 해주세요.\n");
+			System.out.println("\n로그인 실패했습니다.\n");
 		}
 	}
 }

@@ -133,10 +133,12 @@ public class ReserveMenu {
 		System.out.println("\n*** 회원 로그인 ***\n");
 		System.out.print("회원 아이디를 입력하세요 : ");
 		String inputId = sc.nextLine();
-		
+		System.out.print("회원 비밀번호를 입력하세요 : ");
+		String inputPwd = sc.nextLine();
+	
 		/* 회원 정보 PK등록 메소드*/
 		UserDTO user = new UserDTO();
-		user = reserveController.searchUserById(inputId);
+		user = reserveController.searchUser(inputId, inputPwd);
 		
 		/*로그인 성공 시 예매 선택창*/
 		if(user.getName() !=null) {
@@ -164,7 +166,7 @@ public class ReserveMenu {
 	/* 상영 영화 선택 메소드 */
 	public ShowMovieDTO inputMovie() {
 		
-		System.out.println("\n*** 영화관 선택 ***\n");
+		System.out.println("\n*** 영화관 선택 ***");
 		List<CinemaDTO> cinemaList = reserveController.selectCinemaList();
 		
 		int num = 1;
