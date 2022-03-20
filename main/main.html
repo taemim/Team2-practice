@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS 외부링크 -->
+    <link href="../resources/css/main.css" rel="stylesheet" type="text/css">
+     <!-- 구글웹폰트 -->
+     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@300&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+     <!-- 제이쿼리 -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> 
+     
+    <title>1DU1DU</title>
+</head>
+<body>
+
+    <!--header 임포트-->
+    <div data-include-path="header.html"></div>
+
+    <script>
+     
+            window.addEventListener('load', function() {
+                var allElements = document.getElementsByTagName('*');
+                Array.prototype.forEach.call(allElements, function(el) {
+                    var includePath = el.dataset.includePath;
+                    if (includePath) {
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                el.outerHTML = this.responseText;
+                            }
+                        };
+                        xhttp.open('GET', includePath, true);
+                        xhttp.send();
+                    }
+                });
+            });
+     
+        </script>
+
+
+
+
+
+    <!-- 배너(우측 하단) - a카카오톡 1:1문의, 위로 가기 버튼 -->
+    <!-- display:fiexed로 우측하단에 고정되는 배너입니다. -->
+    <div class="banner-wrap">
+        <ul class="banner">
+            <li><a href="#"><span>top <!-- 후에 이미지로 대체하면서 텍스트를 없앨 수 있습니다 --></span></a></li>
+            <li><a href="#">1:1 문의하기</a></li>
+        </ul> <!-- /banner -->
+    </div><!-- /banner -->
+
+   <!-- main 배경이미지 -->
+  
+ <main id="main" class="wrapper">
+    <div id="home" class="content1">
+        <img class="main-img" src="../resources/image/img-bg1.png" >
+        <div class="home-txt-wrap">
+        <!-- 글자 뒤로 불투명도 0.5 -->                                                                         
+            <p>
+                내 입맛에 <b>꼭<b> 맞는 커피로 <br>
+                추천받고 <b>구독<b>하세요
+            </p>
+        </div> <!-- /home-txt-wrap -->
+        <button>원두 취향 테스트</button>
+
+        <div class="circle1">
+        <!-- 반투명한 원 효과 -->
+            <div class="circle2">
+            <!-- 반투명한 원 효과 -->
+                <p>내 취향에 딱 맞는 원두를 추천해요</p>
+                <p>구독을 시작하고 항상 무료 배송으로 받아보세요.</p>
+            </div> <!-- /circle2 -->
+        </div> <!-- /circle1 -->
+    </div> <!-- /content1 -->
+
+    <!-- 1do1do만의 원두구독 서비스 -->
+    <div class="content2">
+        <!-- 구조가 ul-li가 더 편할 것 같아서 이렇게 작성했는데 div가 정렬하기 좋다고 판단되면 수정해주세요! -->
+        <div class="service-wrap">
+            <ul>
+                <li>
+                    <p>원두 취향 테스트</p>
+                    <div class="img-wrap">
+                        <img src="" alt="">
+                    </div>
+                    <p>
+                        내 입맛에 맞는 원두 추천<br>
+                        나에게 맞는 커피 취향만<br>
+                        입력하면 끝!
+                    </p> 
+                    <p>
+                        확고한 취향이 있다면 '블랜드' <br>
+                        다양하게 즐긴다면 '싱글오리진' <br>
+                        원두 종류는 매번 변경 가능합니다.
+                    </p>
+                </li>
+                <li>
+                    <p>매월 정기배송</p>
+                    <div class="img-wrap">
+                        <img src="" alt="">
+                    </div>
+                    <p>
+                        내 입맛에 맞는 원두 추천<br>
+                        나에게 맞는 커피 취향만<br>
+                        입력하면 끝!
+                    </p>
+                    <p>
+                        확고한 취향이 있다면 '블랜드' <br>
+                        다양하게 즐긴다면 '싱글오리진' <br>
+                        원두 종류는 매번 변경 가능합니다.
+                    </p>
+                </li>
+                <li>
+                    <p>정기일 지정</p>
+                    <div class="img-wrap">
+                        <img src="" alt="">
+                    </div>
+                    <p>
+                        내 입맛에 맞는 원두 추천<br>
+                        나에게 맞는 커피 취향만<br>
+                        입력하면 끝!
+                    </p>
+                    <p>
+                        확고한 취향이 있다면 '블랜드' <br>
+                        다양하게 즐긴다면 '싱글오리진' <br>
+                        원두 종류는 매번 변경 가능합니다.
+                    </p>
+                </li>
+                <li>
+                    <p>매달 새로운 커피</p>
+                    <div class="img-wrap">
+                        <img src="" alt="">
+                    </div>
+                    <p>
+                        내 입맛에 맞는 원두 추천<br>
+                        나에게 맞는 커피 취향만<br>
+                        입력하면 끝!
+                    </p>
+                    <p>
+                        확고한 취향이 있다면 '블랜드' <br>
+                        다양하게 즐긴다면 '싱글오리진' <br>
+                        원두 종류는 매번 변경 가능합니다.
+                    </p>
+                </li>
+            </ul>
+        </div> <!-- /service-wrap -->
+        <button>1DO 1DO 구독하러 가기</button>
+    </div> <!-- /content2 -->
+
+    
+    <!-- 파트너쉽카페 홍보 구간 -->
+    <div class="content3">
+        <!-- 슬라이더 기능이 들어갈 부분 -->
+        <!-- 슬라이더 구조를 까먹어서.. 내일 서치를 해보겠습니다.. -->
+        <div class="txt-wrap">
+            <p>원두보관소 KH점</p> <!-- 제목부분입니다. h2로 처리할지 css로 폰트스타일을 줄지? -->
+                                  <!-- css로 하단에 밑줄 효과 줄것~! -->
+            <p>원두원두의 로스터리</p>
+            <p>원두원두와 함께 하는 협업 카페를 통해 매일매일 신선한 원두를 받아보세요.</p>
+        </div>
+    </div> <!-- /content3 -->
+
+    
+    <!-- 베스트 리뷰 -->
+    <div class="content4">
+        <div>
+            <p>지금 원두원두를 즐기고 있는 사람들</p>
+            <ul>
+                <li>
+                    <div class="best-img-wrap"><img src=""/></div> <!-- /img -->
+                    <!-- span 처리를 통해 별점 삽입 -->
+                    <span> <!-- 이 span에 별점을 들어갈 클래스를 줍니다 --> </span>
+                    <p>다양하게 즐기는 1DO1DO <br> 제 입맛에 딱 맞는 원두였어요!</p>
+                </li>
+                <li>
+                    <div class="best-img-wrap"><img src=""/></div> <!-- /img -->
+                    <!-- span 처리를 통해 별점 삽입 -->
+                    <span> <!-- 이 span에 별점을 들어갈 클래스를 줍니다 --> </span>
+                    <p>3개월째 구독중이에요</p>
+                </li>
+                <li>
+                    <div class="best-img-wrap"><img src=""/></div> <!-- /img -->
+                    <!-- span 처리를 통해 별점 삽입 -->
+                    <span> <!-- 이 span에 별점을 들어갈 클래스를 줍니다 --> </span>
+                    <p>원두는 처음인데 모카포트도 사고 매일 커피 마시는 시간을... 내일 마저 채우겠습니다..</p>
+                </li>
+            </ul>
+        </div>
+        <button class="sub-button"><a href="#">1DO 1DO 구독하러 가기</a></button>
+    </div> <!-- /content4 -->
+    
+    <!-- FAQ -->
+    <div class="content5">
+        <p>FAQ</p>
+        <div class="faq-wrap">
+            <!-- div로 처리할지 ul-li로 처리할지 (구성상 div로 해야할 것 같긴 함) -->
+            <div class="toggle-box">받아보는 커피들은 매달 달라지나요?
+                <span><!-- 토글된 글의 제목 옆에 삼각형 도형을 삽입하는 부분 --> </span>
+            </div> <!-- /toggle-box -->
+            <div class="toggle-box">
+                <p>1DO 1DO의 원두는 언제 로스팅 되나요?</p>
+                <span><!-- 토글된 글의 제목 옆에 삼각형 도형을 삽입하는 부분 --> </span>
+                <div class="toggle-txt">
+                    <!-- 일일이 <br>처리를 할 것인지 모든 개행을 <p>로 작성해 margin이나 padding을 줄 것인지? -->
+                    <p>1DO 1DO의 원두는 아래와 같은 과정을 거쳐 전달하는 것을 원칙으로 하고 있습니다. <br><br>
+                       1) <br>
+                       2) <br>
+                       3) <br><br>
+                       * 해당 기준은~ <br>
+                       다만, 파트너 로스터, .. 내일 마저 채우겠습니다ㅠㅠ
+                    </p>
+                </div>
+            </div> <!-- /toggle-box -->
+            <div class="toggle-box">정기 결제는 언제 진행되나요?
+                <span><!-- class를 통해 토글된 글의 제목 옆에 삼각형 도형을 삽입하는 부분 --> </span>
+            </div> <!-- /toggle-box -->
+            <div class="toggle-box">구독을 취소하거나 쉬어갈 수 있나요?
+                <span><!-- class를 통해 토글된 글의 제목 옆에 삼각형 도형을 삽입하는 부분 --> </span>
+            </div> <!-- /toggle-box -->
+            <div class="toggle-box">교환/환불을 받고 싶으면 어떻게 해야 하나요?
+                <span><!-- class를 통해 토글된 글의 제목 옆에 삼각형 도형을 삽입하는 부분 --> </span>
+            </div> <!-- /toggle-box -->
+        </div> <!-- /faq-wrap -->
+
+    </div> <!-- /content5 -->
+
+    
+    </main><!-- /main-->
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="footer-inner">
+                <ul class="footer-policy">
+                    <li><a href="#">개인정보 처리방침</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">전자금융거래 이용약관</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <div>
+                        <address>서울특별시 강남구 테헤란로 14길 6 남도빌딩 2F</address>
+                    </div>
+                    <p>상호명 : (주)원두데이볶나</p>
+                    <p>| 대표자 : 유혜원 </p>
+                    <p>| 개인정보보호책임자 : 1DU1DU(1DU1DU@gmail.com)</p>
+                    <p>| 사업자등록번호 : 713-86-00000</p>
+                    <p>| 통신판매업신고번호 : 제2022-서울강남-02222호</p>
+                    <p class="copy">COPYRIGHT &copy; 2022 Designed by 1DU1DU All rights reserved</p>
+                </div>
+            </div>
+            <div class="footer-call">
+                <p id="footer-cs">CS센터 : 070-1234-5678</p>
+                <p>AM 9:00 ~ PM 17:00</p>
+                <p>점심 : PM 12:00 ~ 14:00</p>
+                <p>휴일 : 주말, 공휴일</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,166 @@
+@charset "UTF-8";       /* 인코딩 문자 깨짐 방지 */
+
+/* 공통 속성 */
+
+html {
+    /* 사용자 설정 문자 크기 그대로 반영 되도록 */
+    font-size : 100%;
+}
+
+body {
+    line-height: 2.0;
+    color : #432;
+    font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color : #432;
+}
+
+img {
+    border: 0 none;
+    vertical-align: top;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+dl, ul, ol, li {
+    list-style: none;
+}
+
+
+
+/* header ---------------------------------------------- */
+
+/* 상단 top 배너 박스 */
+.top_banner {
+    width: 100%;
+    height: 50px;
+    background: rgb(40, 40, 40);
+    color: rgb(230, 230, 230);
+    position: relative;
+    text-align: center;
+}
+.top_banner > p {
+    font-size: 1.2em;
+    padding-top: 5px;
+    margin-top: 0px;
+}
+
+/* nav 메뉴 장식 ---------------------------------------------------------------------------*/
+/* 헤더고정하기 */
+#header_wrap {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background-color: #F3EFEF;
+    padding-top: 0;
+}
+
+/* 메인 카테고리 */
+.h_cate {
+    position: absolute;
+    left: 25px;
+    top: 60px;
+}
+
+#header .h_cate ul li a {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    line-height: 84px;
+    padding: 0 50px;
+}
+
+.inline>li, .inline>div, .inline>* {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.inline {
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+/*히든 메뉴---------------------------------------------*/
+
+#header .h_cate_all {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 30px 0;
+    border-top: 1px solid #E3E3E3;
+    background: #F3EFEF;
+    
+
+}
+
+
+.h_cate_all ul li a {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    line-height: 40px;
+    padding-left: 80px;
+    padding-right: 20px;
+} 
+
+.h_cate_all li:hover{
+    font-weight: bold;
+}
+
+
+/*메인 로고 -------------------------------------------*/
+
+#header .logo {
+    text-align: center;
+}
+
+#header .logo img {
+    height: 100px;
+}
+
+.logo > a img {
+    width: 200px;
+}
+
+/* ----------------------------------------------------------------------*/
+/* 오른쪽 메뉴 */
+.right_menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    float: right;
+}
+
+
+/*장바구니 로고 크기&위치 */
+.right_menu img {
+    height: 30px;
+    width: 30px;
+    padding-top: 25px;
+}
+
+.right_menu ul li a {
+    font-size: 1.25em;
+    line-height: 84px;
+    padding: 0 30px;
+}
+
+/* 관리/마이 페이지 숨김 */
+.hidden-menu {
+   visibility: hidden;
+}

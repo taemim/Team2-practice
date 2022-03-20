@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+
+
+
+/* 전체박스 */
+.outer {
+	width: 25%;
+	min-width: 650px;
+	height: 1500px;
+	border-radius: 20px;
+	margin: 500px auto;
+	display: flex;
+	justify-content: center;
+	/*align-items: center;*/
+    background-color: #F4F1F1;
+    margin-top: 200px;
+    margin-bottom: 300px;
+}
+
+/* 로그인 영역 */
+.loginArea {
+    margin-top: 20px;
+
+}
+
+
+/* 로그인 글자 */
+.loginArea h1 {
+	text-align: left;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight:bolder;
+
+}
+
+.loginArea h4 {
+    font-size: 0.9em;
+    font-weight:800;
+    letter-spacing: 0.5px;
+}
+
+
+
+
+.loginArea #emailFind {
+
+    font-size: 0.9em;
+    font-weight:800;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
+
+/* 비밀번호 영역 */
+.loginArea #phonePwd {
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-weight:800;
+    letter-spacing: 0.5px;
+}
+
+
+
+/* 입력창 전체*/
+.input_area {
+    
+    border-radius: 10px;
+    margin-top: 20rem;
+	padding: 12px 60px 14px 20px;
+	background: white;
+
+}
+
+
+/* 아이디 찾기 버튼 */
+.input_area:nth-child(8) {
+    
+    border-radius: 10px;
+    margin-top: 20rem;
+	padding: 12px 60px 14px 20px;
+	background: rgb(0, 0, 0);
+
+}
+
+
+
+/* 인풋창 전체 */
+.input_area input {
+	width: 500px;
+	height: 30px;
+	border: 0px;
+}
+
+/* 인풋창 포커스 */
+.input_area input:focus {
+	outline: none;
+}
+
+/* 아이디 찾기 버튼 */
+.input_area #findButton {
+    width:250px;
+	background:black;
+	border: 0px;
+    color : rgb(255, 255, 255);
+    text-align: center;
+    font-size: 0.9em;
+    font-weight:900;
+    letter-spacing: 0.7px;
+    padding: 12px 60px 14px 90px;
+    transition:0.4s;
+
+
+
+}
+
+
+
+
+
+/*로그인 화면 돌아가기*/
+.myButton {
+    width:200px;
+    margin-top: 90px;
+    margin-left: -30px;
+	background:black;
+	border-radius:50px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	padding: 3px 0px 3px 20px;
+	text-decoration:none;
+    transition:0.4s;
+    display:block;
+}
+.myButton:hover {
+
+    background: white;
+    color:black;
+    cursor: pointer;
+	box-shadow: 0 2px 4px white;
+
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+.input_area input[type=submit] {
+	background:black;
+	cursor : pointer;
+    color : white;
+    text-align: center;
+    padding: 10px 35px 14px 80x;
+}
+
+
+
+

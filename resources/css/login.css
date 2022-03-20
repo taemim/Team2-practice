@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+
+
+
+/* 전체박스 */
+.outer {
+	width: 25%;
+	min-width: 450px;
+	height: 600px;
+	border-radius: 20px;
+	margin: 500px auto;
+	display: flex;
+	justify-content: center;
+	/*align-items: center;*/
+    background-color: #F4F1F1;
+    margin-top: 200px;
+    margin-bottom: 500px;
+}
+
+/* 로그인 영역 */
+.loginArea {
+    margin-top: 20px;
+
+}
+
+
+/* 로그인 글자 */
+.loginArea h1 {
+	text-align: center;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    font-size: 30px;
+    font-weight:bolder;
+
+}
+
+.loginArea h4,h2 {
+	pointer-events: none;
+}
+
+
+
+/* 아이디 영역 */
+.loginArea #memberId {
+
+    font-size: 0.9em;
+    font-weight:800;
+    letter-spacing: 0.5px;
+}
+
+
+/* 비밀번호 영역 */
+.loginArea #memberPwd {
+    margin-top: 30px;
+    font-size: 0.9em;
+    font-weight:800;
+    letter-spacing: 0.5px;
+}
+
+/* 아이디 저장 체크박스 */
+.loginArea #remember {
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+}
+
+/* 입력창 전체*/
+.input_area {
+    
+    border-radius: 10px;
+    margin-top: 20rem;
+	padding: 12px 60px 14px 20px;
+	background: white;
+
+}
+
+.input_area:nth-child(7) {
+    
+    border-radius: 10px;
+    margin-top: 20rem;
+	padding: 12px 60px 14px 20px;
+	background: black;
+
+}
+
+
+.input_area:nth-child(10) {
+
+    border-radius: 10px;
+	padding: 10px 40px 14px 40px;
+	background: #FBE206;
+
+}
+
+/* 인풋창 전체 */
+.input_area input {
+	width: 250px;
+	height: 30px;
+	border: 0px;
+}
+
+/* 인풋창 포커스 */
+.input_area input:focus {
+	outline: none;
+}
+
+/* 로그인 버튼 */
+.input_area #login {
+	background:black;
+	border: 0px;
+    color : white;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight:900;
+    letter-spacing: 0.7px;
+
+}
+
+.input_area #kakao-login {
+	background:#FBE206;
+	border: 0px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-weight:bolder;
+    letter-spacing: 0.7px;
+}
+
+.input_area input[type=submit] {
+	background:black;
+	cursor : pointer;
+    color : white;
+    text-align: center;
+    padding: 10px 35px 14px 70px;
+}
+
+
+.cantlogin {
+    margin-top: 3em;
+    text-align: center;  
+    font-size: 0.9em;
+    font-weight:bolder;
+    letter-spacing: 0.7px;
+    text-decoration: none;
+}
+
+.cantlogin label {
+    display:inline-block;
+    text-decoration: none;
+}
+
+
+
